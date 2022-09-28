@@ -1,9 +1,23 @@
 package br.ufrn.wallet.model;
 
+import java.util.List;
+
 public class User {
+    private long id;
     private String name;
     private String email;
     private String profilePicture;
+    private List<Expense> expenses;
+    private List<MoneyBox> moneyBoxes;
+
+    public long getId() {
+        return id;
+    }
+
+    public User setId(long id) {
+        this.id = id;
+        return this;
+    }
 
     public String getName() {
         return name;
