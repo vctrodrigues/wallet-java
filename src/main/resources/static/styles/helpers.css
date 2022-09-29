@@ -311,3 +311,19 @@
 .app--text-bold {
   font-weight: 700;
 }
+
+/* SCROLLBAR */
+
+.app--scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.app--scrollbar::-webkit-scrollbar-track {
+  background-color: var(--app-color--grey200);
+}
+
+.app--scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--app-color--grey400);
+  border-radius: 5px;
+}

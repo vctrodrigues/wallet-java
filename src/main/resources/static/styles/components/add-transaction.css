@@ -1,0 +1,11 @@
+.app-add-transaction > .app-add-transaction__top {
+  gap: 5px;
+}
+
+.app-add-transaction > .app-add-transaction__top > i {
+  color: var(--app-color--background200);
+}
+
+.app-add-transaction > .app-add-transaction__content {
+  gap: 30px;
+}

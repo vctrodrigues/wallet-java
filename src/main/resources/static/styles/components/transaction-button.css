@@ -1,0 +1,44 @@
+.app-transaction-button {
+  width: fit-content;
+  gap: 10px;
+}
+
+.app-transaction-button > .app-transaction-button__icon {
+  width: 90px;
+  height: 90px;
+
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.app-transaction-button > .app-transaction-button__icon {
+  transition: var(--app-transition--1);
+}
+
+.app-transaction-button > .app-transaction-button__icon:hover {
+  transform: scale(1.05);
+}
+
+.app-transaction-button:nth-child(1) > .app-transaction-button__icon {
+  background-color: var(--app-color--secondary);
+}
+
+.app-transaction-button:nth-child(1) > .app-transaction-button__icon:hover {
+  box-shadow: 0 0 8px 4px var(--app-color--secondaryShadow);
+}
+
+.app-transaction-button:nth-child(2) > .app-transaction-button__icon {
+  background-color: var(--app-color--primary);
+}
+
+.app-transaction-button:nth-child(2) > .app-transaction-button__icon:hover {
+  box-shadow: 0 0 8px 4px var(--app-color--primaryShadow);
+}
+
+.app-transaction-button:nth-child(3) > .app-transaction-button__icon {
+  background-color: var(--app-color--accent);
+}
+
+.app-transaction-button:nth-child(3) > .app-transaction-button__icon:hover {
+  box-shadow: 0 0 8px 4px var(--app-color--accentShadow);
+}

@@ -1,0 +1,41 @@
+.app-transaction-card {
+  padding: 20px 30px;
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  min-width: fit-content;
+
+  background-color: var(--app-color--background600);
+}
+
+.app-transaction-card > .app-transaction-card__icon {
+  width: 70px;
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 100%;
+
+  background-color: var(--app-color--background400);
+}
+
+.app-transaction-card > .app-transaction-card__icon > i {
+  color: var(--app-color--background200);
+}
+
+.app-transaction-card > .app-transaction-card__content > span.app--text-sm {
+  color: var(--app-color--background400);
+}
+
+.app-transaction-card > .app-transaction-card__value > span {
+  line-height: 20px;
+}
+
+.app-transaction-card > .app-transaction-card__value > span:nth-child(1) {
+  margin-right: 5px;
+}
