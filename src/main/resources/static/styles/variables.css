@@ -9,13 +9,15 @@
   --app-color--text: #ffffff;
 
   --app-color--primary: #8350f2;
-  --app-color--primary600: #7b61ff;
+  --app-color--primary600: #8168fe;
   --app-color--primaryShadow: rgba(131, 80, 242, 0.24);
 
   --app-color--secondary: #f2357b;
+  --app-color--secondary600: #fa5f98;
   --app-color--secondaryShadow: rgba(242, 53, 123, 0.24);
 
   --app-color--accent: #f2cb05;
+  --app-color--accent600: #f4db61;
   --app-color--accentShadow: rgba(242, 203, 5, 0.24);
 
   --app-color--grey50: #f9fafb;

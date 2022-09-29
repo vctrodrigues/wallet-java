@@ -5,6 +5,11 @@ button.app-button {
   border: none;
   border-radius: 5px;
   background-color: var(--app-color--primary);
+  background: linear-gradient(
+    0deg,
+    var(--app-color--primary) 0%,
+    var(--app-color--primary600) 100%
+  );
 
   transition: var(--app-transition--1);
 }
@@ -13,5 +18,4 @@ button.app-button:hover,
 button.app-button:focus {
   outline: none;
   box-shadow: 0 0 8px 4px var(--app-color--primaryShadow);
-  background-color: var(--app-color--primary600);
 }

@@ -20,12 +20,19 @@
   justify-content: center;
 
   border-radius: 100%;
+  cursor: default;
 
   background-color: var(--app-color--background400);
+  background: linear-gradient(
+    0deg,
+    var(--app-color--background400) 0%,
+    var(--app-color--background200) 300%
+  );
 }
 
 .app-transaction-card > .app-transaction-card__icon > i {
   color: var(--app-color--background200);
+  cursor: default;
 }
 
 .app-transaction-card > .app-transaction-card__content > span.app--text-sm {
