@@ -1,0 +1,10 @@
+.app-logo {
+  background-color: var(--app-color--primary);
+
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.app-logo > img {
+  width: 160px;
+}

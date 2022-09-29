@@ -1,13 +1,44 @@
 <!DOCTYPE html>
-<html lang="pt-BR"
-      xmlns="http://www.w3.org/1999/xhtml"  >
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <title>Wallet</title>
-</head>
-<body>
-</body>
+  </head>
+  <body>
+    <header
+      class="app-header app--full-width app--container app--sticky app--flex app--align-center app--justify-between"
+    >
+      <div class="app-logo app--px-2 app--py-4">
+        <img class="app-logo__img" src="/img/logo.svg" alt="Logo Wallet" />
+      </div>
+      <nav class="app-header__nav">
+        <ul class="app-header__nav__list app--flex">
+          <li class="app-header__nav__list__item app--flex app--align-center">
+            <i class="material-symbols-outlined md">archive</i>
+            <span class="app--text-sm app--text-bold">Minhas caixinhas</span>
+          </li>
+          <li class="app-header__nav__list__item app--flex app--align-center">
+            <i class="material-symbols-outlined md">request_quote</i>
+            <span class="app--text-sm app--text-bold">Custos fixos</span>
+          </li>
+          <li
+            class="app-header__nav__list__item app-header__nav__list__item--no-tab app--flex app--ml-1 app--align-center"
+          >
+            <span class="app--text-sm app--text-bold">
+              Olá, <span class="app--text-bold">User</span>
+            </span>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  </body>
 </html>

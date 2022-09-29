@@ -1,0 +1,22 @@
+:root {
+  --app-color--background: #282236;
+  --app-color--background600: #453c5a;
+  --app-color--background400: #645781;
+  --app-color--background200: #b6aad1;
+  --app-color--backgroundShadow: rgba(0, 0, 0, 0.8);
+
+  --app-color--text: #ffffff;
+
+  --app-color--primary: #8350f2;
+  --app-color--primary600: #7b61ff;
+  --app-color--primaryShadow: rgba(131, 80, 242, 0.24);
+
+  --app-color--secondary: #f2357b;
+  --app-color--primaryShadow: rgba(242, 53, 123, 0.24);
+
+  --app-color--accent: #f2cb05;
+
+  --app-transition--1: 0.1s ease-in-out;
+  --app-transition--2: 0.2s ease-in-out;
+  --app-transition--3: 0.3s ease-in-out;
+}
