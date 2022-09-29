@@ -14,6 +14,10 @@ fieldset.app-input {
   border: 0;
 }
 
+fieldset.app-input.app-input--disabled {
+  opacity: 0.5;
+}
+
 fieldset.app-input > label.app-input__label {
   position: absolute;
   top: 10px;
@@ -48,11 +52,8 @@ fieldset.app-input > input.app-input__field:focus ~ label.app-input__label {
   left: 5px;
 }
 
-fieldset.app-input > input.app-input__field:focus {
+fieldset.app-input:not(.app-input--disabled) > input.app-input__field:focus,
+fieldset.app-input:not(.app-input--disabled) > input.app-input__field:hover {
   outline: none;
-  background-color: var(--app-color--background600);
-}
-
-fieldset.app-input > input.app-input__field:hover {
   background-color: var(--app-color--background600);
 }

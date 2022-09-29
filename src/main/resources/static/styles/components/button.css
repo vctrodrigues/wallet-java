@@ -14,8 +14,16 @@ button.app-button {
   transition: var(--app-transition--1);
 }
 
-button.app-button:hover,
-button.app-button:focus {
+button.app-button.app-button--disabled {
+  cursor: not-allowed;
+  color: var(--app-color--background200);
+
+  background: none;
+  background-color: var(--app-color--background600);
+}
+
+button.app-button:hover:not(.app-button--disabled),
+button.app-button:focus:not(.app-button--disabled) {
   outline: none;
   box-shadow: 0 0 8px 4px var(--app-color--primaryShadow);
 }

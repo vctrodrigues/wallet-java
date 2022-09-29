@@ -9,8 +9,6 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet"
     />
-
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <title>Wallet</title>
   </head>
   <body>
@@ -24,9 +22,9 @@
         <ul class="app-header__nav__list app--flex">
           <li class="app-header__nav__list__item app--flex app--align-center">
             <i class="material-symbols-outlined md">archive</i>
-            <span class="app--text-sm app--text-semibold"
-              >Minhas caixinhas</span
-            >
+            <span class="app--text-sm app--text-semibold">
+              Minhas caixinhas
+            </span>
           </li>
           <li class="app-header__nav__list__item app--flex app--align-center">
             <i class="material-symbols-outlined md">request_quote</i>
@@ -51,10 +49,12 @@
           <i class="material-symbols-outlined xl">attach_money</i>
           <h3>Adicionar transação</h3>
         </div>
+
         <div
           class="app-add-transaction__content app--mt-4 app--flex app--align-center"
         >
           <div
+            id="add-payment"
             class="app-transaction-button app--flex app--column app--align-center"
           >
             <div
@@ -66,6 +66,7 @@
           </div>
 
           <div
+            id="add-revenue"
             class="app-transaction-button app--flex app--column app--align-center"
           >
             <div
@@ -77,6 +78,7 @@
           </div>
 
           <div
+            id="add-transferency"
             class="app-transaction-button app--flex app--column app--align-center"
           >
             <div
@@ -87,8 +89,13 @@
             <span class="app--text-sm">Transferência</span>
           </div>
 
-          <form class="app--flex app--align-center" action="" method="post">
-            <fieldset class="app-input app--mr-1">
+          <form
+            id="transaction-form"
+            class="app--flex app--align-center"
+            action=""
+            method="post"
+          >
+            <fieldset id="title-input" class="app-input app--mr-1">
               <input
                 class="app-input__field"
                 type="text"
@@ -97,7 +104,7 @@
               />
               <label class="app-input__label" for="title">Título</label>
             </fieldset>
-            <fieldset class="app-input app--mr-1">
+            <fieldset id="value-input" class="app-input app--mr-1">
               <input
                 class="app-input__field"
                 type="number"
@@ -106,7 +113,9 @@
               />
               <label class="app-input__label" for="value">Valor</label>
             </fieldset>
-            <button style="width: 140px" class="app-button">Adicionar</button>
+            <button id="add-button" style="width: 140px" class="app-button">
+              Adicionar
+            </button>
           </form>
         </div>
       </section>
@@ -152,5 +161,15 @@
         </div>
       </section>
     </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script type="module" src="/lib/app.js"></script>
+    <script type="module">
+      import App from "./lib/app.js";
+
+      window.addEventListener("load", () => {
+        const app = new App("Home");
+      });
+    </script>
   </body>
 </html>

@@ -1,6 +1,14 @@
 .app-transaction-button {
   width: fit-content;
   gap: 10px;
+
+  opacity: 0.5;
+  transition: var(--app-transition--2);
+}
+
+.app-transaction-button.app-transaction-button--active,
+.app-transaction-button:hover {
+  opacity: 1;
 }
 
 .app-transaction-button > .app-transaction-button__icon {
