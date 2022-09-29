@@ -2,12 +2,32 @@ package br.ufrn.wallet.model;
 
 import br.ufrn.wallet.enums.CurrencyEnum;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Expense")
 public class Expense {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "value")
     private Double value;
+
+    @Column(name = "currency")
+    @Enumerated(EnumType.STRING)
     private CurrencyEnum currency;
+
+    @Column(name = "day")
     private int day;
+
+    @ManyToOne
+    @JoinColumn(name = "user", nullable = false)
+    private User user;
 
     public long getId() {
         return id;

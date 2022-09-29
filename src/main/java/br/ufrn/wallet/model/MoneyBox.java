@@ -2,14 +2,31 @@ package br.ufrn.wallet.model;
 
 import br.ufrn.wallet.enums.CurrencyEnum;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "MoneyBox")
 public class MoneyBox {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "value")
     private Double value;
+
+    @Column(name = "currency")
+    @Enumerated(EnumType.STRING)
     private CurrencyEnum currency;
+
+    @ManyToMany(mappedBy = "moneyBoxes")
     private List<User> participants;
 
     public long getId() {

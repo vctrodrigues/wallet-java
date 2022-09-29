@@ -3,13 +3,36 @@ package br.ufrn.wallet.model;
 import br.ufrn.wallet.enums.CurrencyEnum;
 import br.ufrn.wallet.enums.TransactionTypeEnum;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Transaction")
 public class Transaction {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @OneToOne
+    @JoinColumn(name = "userPayer")
     private User userPayer;
+
+    @OneToOne
+    @JoinColumn(name = "userReceiver")
     private User userReceiver;
+
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "type")
+    @Enumerated(EnumType.STRING)
     private TransactionTypeEnum type;
+
+    @Column(name = "currency")
+    @Enumerated(EnumType.STRING)
     private CurrencyEnum currency;
+
+    @Column(name = "value")
     private Double value;
 
     public long getId() {

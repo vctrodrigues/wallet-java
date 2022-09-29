@@ -1,13 +1,32 @@
 package br.ufrn.wallet.model;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "User")
 public class User {
-    private long id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "profilePicture")
     private String profilePicture;
+
+    @OneToMany(mappedBy = "user")
     private List<Expense> expenses;
+
+    @ManyToMany
+    @JoinTable(name = "MoneyBoxUsers",
+            joinColumns = @JoinColumn(name = "idUser"),
+            inverseJoinColumns = @JoinColumn(name = "idMoneyBox"))
     private List<MoneyBox> moneyBoxes;
 
     public long getId() {
