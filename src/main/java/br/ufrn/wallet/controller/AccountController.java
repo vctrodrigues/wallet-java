@@ -1,6 +1,6 @@
 package br.ufrn.wallet.controller;
 
-import br.ufrn.wallet.model.LoginForm;
+import br.ufrn.wallet.form.LoginForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;

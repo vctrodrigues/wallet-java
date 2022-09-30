@@ -1,6 +1,7 @@
-package br.ufrn.wallet.model;
+package br.ufrn.wallet.form;
 
 import br.ufrn.wallet.enums.CurrencyEnum;
+import br.ufrn.wallet.model.Account;
 
 public class ExpenseForm {
 

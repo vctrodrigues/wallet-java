@@ -1,4 +1,4 @@
-package br.ufrn.wallet.model;
+package br.ufrn.wallet.form;
 
 public class LoginForm {
 
