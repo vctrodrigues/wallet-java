@@ -26,8 +26,9 @@ public class MoneyBox {
     @Enumerated(EnumType.STRING)
     private CurrencyEnum currency;
 
-    @ManyToMany(mappedBy = "moneyBoxes")
-    private List<User> participants;
+    @ManyToMany
+    @JoinTable(name = "money_box_accounts", joinColumns = @JoinColumn(name = "money_box_id"), inverseJoinColumns = @JoinColumn(name = "account_id"))
+    private List<Account> participants;
 
     public long getId() {
         return id;
@@ -74,11 +75,11 @@ public class MoneyBox {
         return this;
     }
 
-    public List<User> getParticipants() {
+    public List<Account> getParticipants() {
         return participants;
     }
 
-    public MoneyBox setParticipants(List<User> participants) {
+    public MoneyBox setParticipants(List<Account> participants) {
         this.participants = participants;
         return this;
     }

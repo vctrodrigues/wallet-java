@@ -14,12 +14,12 @@ public class Transaction {
     private long id;
 
     @OneToOne
-    @JoinColumn(name = "userPayer")
-    private User userPayer;
+    @JoinColumn(name = "accountPayer")
+    private Account accountPayer;
 
     @OneToOne
-    @JoinColumn(name = "userReceiver")
-    private User userReceiver;
+    @JoinColumn(name = "accountReceiver")
+    private Account accountReceiver;
 
     @Column(name = "title")
     private String title;

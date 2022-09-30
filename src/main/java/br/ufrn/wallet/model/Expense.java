@@ -26,8 +26,8 @@ public class Expense {
     private int day;
 
     @ManyToOne
-    @JoinColumn(name = "user", nullable = false)
-    private User user;
+    @JoinColumn(name = "account_id")
+    private Account account;
 
     public long getId() {
         return id;

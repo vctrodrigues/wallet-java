@@ -1,11 +1,12 @@
 package br.ufrn.wallet.model;
 
 import javax.persistence.*;
-import java.util.List;
+// import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "User")
-public class User {
+@Table(name = "Account")
+public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,20 +21,18 @@ public class User {
     @Column(name = "profilePicture")
     private String profilePicture;
 
-    @OneToMany(mappedBy = "user")
-    private List<Expense> expenses;
+    @OneToMany(mappedBy = "account")
+    private Set<Expense> expenses;
 
     @ManyToMany
-    @JoinTable(name = "MoneyBoxUsers",
-            joinColumns = @JoinColumn(name = "idUser"),
-            inverseJoinColumns = @JoinColumn(name = "idMoneyBox"))
-    private List<MoneyBox> moneyBoxes;
+    @JoinTable(name = "money_box_accounts", joinColumns = @JoinColumn(name = "account_id"), inverseJoinColumns = @JoinColumn(name = "money_box_id"))
+    private Set<MoneyBox> moneyBoxes;
 
     public long getId() {
         return id;
     }
 
-    public User setId(long id) {
+    public Account setId(long id) {
         this.id = id;
         return this;
     }
@@ -42,7 +41,7 @@ public class User {
         return name;
     }
 
-    public User setName(String name) {
+    public Account setName(String name) {
         this.name = name;
         return this;
     }
@@ -51,7 +50,7 @@ public class User {
         return email;
     }
 
-    public User setEmail(String email) {
+    public Account setEmail(String email) {
         this.email = email;
         return this;
     }
@@ -60,7 +59,7 @@ public class User {
         return profilePicture;
     }
 
-    public User setProfilePicture(String profilePicture) {
+    public Account setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
         return this;
     }
