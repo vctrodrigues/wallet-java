@@ -2,6 +2,8 @@ package br.ufrn.wallet.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,9 @@ import br.ufrn.wallet.model.Expense;
 import br.ufrn.wallet.model.ExpenseForm;
 import br.ufrn.wallet.service.ExpenseService;
 
+import javax.persistence.EntityNotFoundException;
+import java.util.List;
+
 @Controller
 @RequestMapping("/expense")
 public class ExpenseController {
@@ -23,39 +28,51 @@ public class ExpenseController {
   @Qualifier("expenseServiceImpl")
   ExpenseService expenseService;
 
-  @GetMapping()
-  public String listExpenses(Model model) {
-    model.addAttribute("expenses", expenseService.getExpenses());
-    return "/";
+  @GetMapping
+  public ResponseEntity listExpenses() {
+    try {
+      List<Expense> expenses = expenseService.getExpenses();
+      return new ResponseEntity<>(expenses, HttpStatus.OK);
+
+    } catch (EntityNotFoundException e) {
+      return new ResponseEntity<>("No expenses found.", HttpStatus.NOT_FOUND);
+    }
   }
 
   @GetMapping("/{id}")
-  public String listExpenses(@PathVariable long id, Model model) {
-    Expense expense = expenseService.getExpenseById(id);
-    model.addAttribute("expense", expense);
-    return "/";
+  public ResponseEntity listExpenses(@PathVariable(name = "id") Long id) {
+    try {
+      Expense expense = expenseService.getExpenseById(id);
+      return new ResponseEntity<>(expense, HttpStatus.OK);
+
+    } catch (EntityNotFoundException e) {
+      return new ResponseEntity<>("No expense found.", HttpStatus.NOT_FOUND);
+    }
   }
 
   @PatchMapping("/{id}")
-  public String updateExpense(@PathVariable long id, Model model, @RequestBody ExpenseForm expenseForm) {
-    Expense expense = expenseService.getExpenseById(id);
-    expense.setDay(expenseForm.getDay()).setCurrency(expenseForm.getCurrency())
-        .setDescription(expenseForm.getDescription()).setValue(expenseForm.getValue());
-
-    expenseService.saveExpense(expense);
-
-    return this.listExpenses(model);
+  public ResponseEntity updateExpense(@PathVariable(name = "id") Long id, @RequestBody ExpenseForm expenseForm) {
+    try {
+      Expense expense = expenseService.getExpenseById(id);
+      expense.setDay(expenseForm.getDay())
+              .setCurrency(expenseForm.getCurrency())
+              .setDescription(expenseForm.getDescription())
+              .setValue(expenseForm.getValue());
+      Expense expenseSaved = expenseService.saveExpense(expense);
+      return new ResponseEntity<>(expenseSaved, HttpStatus.OK);
+    } catch (EntityNotFoundException e) {
+      return new ResponseEntity("No expense found with given id: "+ id, HttpStatus.NOT_FOUND);
+    }
   }
 
-  @PostMapping()
-  public String createExpense(Model model, @RequestBody ExpenseForm expenseForm) {
+  @PostMapping
+  public ResponseEntity createExpense(@RequestBody ExpenseForm expenseForm) {
     Expense expense = new Expense();
-
-    expense.setDay(expenseForm.getDay()).setCurrency(expenseForm.getCurrency())
-        .setDescription(expenseForm.getDescription()).setValue(expenseForm.getValue());
-
-    expenseService.saveExpense(expense);
-
-    return this.listExpenses(model);
+    expense.setDay(expenseForm.getDay())
+            .setCurrency(expenseForm.getCurrency())
+            .setDescription(expenseForm.getDescription())
+            .setValue(expenseForm.getValue());
+    Expense expenseSaved = expenseService.saveExpense(expense);
+    return new ResponseEntity<>(expenseSaved, HttpStatus.OK);
   }
 }
