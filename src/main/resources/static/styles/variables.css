@@ -1,0 +1,37 @@
+:root {
+  --app-color--background: #282236;
+  --app-color--background600: #453c5a;
+  --app-color--background400: #645781;
+  --app-color--background200: #b6aad1;
+  --app-color--background0: rgba(40, 34, 54, 0);
+  --app-color--backgroundShadow: rgba(0, 0, 0, 0.8);
+
+  --app-color--text: #ffffff;
+
+  --app-color--primary: #8350f2;
+  --app-color--primary600: #8168fe;
+  --app-color--primaryShadow: rgba(131, 80, 242, 0.24);
+
+  --app-color--secondary: #f2357b;
+  --app-color--secondary600: #fa5f98;
+  --app-color--secondaryShadow: rgba(242, 53, 123, 0.24);
+
+  --app-color--accent: #f2cb05;
+  --app-color--accent600: #f4db61;
+  --app-color--accentShadow: rgba(242, 203, 5, 0.24);
+
+  --app-color--grey50: #f9fafb;
+  --app-color--grey100: #f3f4f6;
+  --app-color--grey200: #e5e7eb;
+  --app-color--grey300: #d1d5db;
+  --app-color--grey400: #9ca3af;
+  --app-color--grey500: #6b7280;
+  --app-color--grey600: #4b5563;
+  --app-color--grey700: #374151;
+  --app-color--grey800: #1f2937;
+  --app-color--grey900: #111827;
+
+  --app-transition--1: all 0.1s ease-in-out;
+  --app-transition--2: all 0.2s ease-in-out;
+  --app-transition--3: all 0.3s ease-in-out;
+}

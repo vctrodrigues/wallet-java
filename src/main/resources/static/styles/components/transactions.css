@@ -1,0 +1,63 @@
+.app-transactions > .app-transactions__top {
+  gap: 5px;
+}
+
+.app-transactions > .app-transactions__top > i {
+  color: var(--app-color--background200);
+}
+
+.app-transactions > .app-transactions__content {
+  gap: 30px;
+}
+
+.app-transactions > .app-transactions__list {
+  gap: 10px;
+}
+
+.app-transactions > .app-transactions__list > .app-transactions__list__cards {
+  flex-wrap: nowrap;
+  overflow: auto;
+}
+
+.app-transactions > .app-transactions__list > .app-transactions__list__cards {
+  gap: 10px;
+
+  padding-bottom: 30px;
+}
+
+.app-transactions
+  > .app-transactions__list
+  > .app-transactions__list__cards::before,
+.app-transactions
+  > .app-transactions__list
+  > .app-transactions__list__cards::after {
+  position: sticky;
+  content: " ";
+  height: 130px;
+  min-width: calc(50% - 522px);
+}
+
+.app-transactions
+  > .app-transactions__list
+  > .app-transactions__list__cards::before {
+  top: 0;
+  left: 0;
+
+  background: linear-gradient(
+    90deg,
+    var(--app-color--background) 20%,
+    var(--app-color--background0) 100%
+  );
+}
+.app-transactions
+  > .app-transactions__list
+  > .app-transactions__list__cards::after {
+  top: 0;
+  right: 0;
+
+  background: linear-gradient(
+    -90deg,
+    var(--app-color--background) 20%,
+    var(--app-color--background0) 100%
+  );
+}

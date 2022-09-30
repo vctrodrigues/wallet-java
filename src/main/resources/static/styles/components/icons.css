@@ -1,0 +1,23 @@
+i.material-symbols-outlined {
+  font-size: 1rem;
+}
+
+i.material-symbols-outlined.sm {
+  font-size: 1rem;
+}
+
+i.material-symbols-outlined.md {
+  font-size: 1.5rem;
+}
+
+i.material-symbols-outlined.lg {
+  font-size: 2rem;
+}
+
+i.material-symbols-outlined.xl {
+  font-size: 2.5rem;
+}
+
+i.material-symbols-outlined.xxl {
+  font-size: 3rem;
+}

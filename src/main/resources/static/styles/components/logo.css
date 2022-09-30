@@ -1,0 +1,16 @@
+.app-logo {
+  background-color: var(--app-color--primary);
+  background: linear-gradient(
+    0deg,
+    var(--app-color--primary) 0%,
+    var(--app-color--primary600) 100%
+  );
+
+  box-shadow: 0 0 16px -8px var(--app-color--backgroundShadow);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.app-logo > img {
+  width: 160px;
+}

@@ -1,13 +1,175 @@
 <!DOCTYPE html>
-<html lang="pt-BR"
-      xmlns="http://www.w3.org/1999/xhtml"  >
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
     <title>Wallet</title>
-</head>
-<body>
-</body>
+  </head>
+  <body>
+    <header
+      class="app-header app--full-width app--container app--sticky app--flex app--align-center app--justify-between"
+    >
+      <div class="app-logo app--px-2 app--py-4">
+        <img class="app-logo__img" src="/img/logo.svg" alt="Logo Wallet" />
+      </div>
+      <nav class="app-header__nav">
+        <ul class="app-header__nav__list app--flex">
+          <li class="app-header__nav__list__item app--flex app--align-center">
+            <i class="material-symbols-outlined md">archive</i>
+            <span class="app--text-sm app--text-semibold">
+              Minhas caixinhas
+            </span>
+          </li>
+          <li class="app-header__nav__list__item app--flex app--align-center">
+            <i class="material-symbols-outlined md">request_quote</i>
+            <span class="app--text-sm app--text-semibold">Custos fixos</span>
+          </li>
+          <li
+            class="app-header__nav__list__item app-header__nav__list__item--no-tab app--flex app--ml-1 app--align-center"
+          >
+            <span class="app--text-sm app--text-semibold">
+              Olá, <span class="app--text-semibold">User</span>
+            </span>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="app-main app--full-width">
+      <section
+        class="app-add-transaction app--container app--flex app--column app--full-width app--py-4"
+      >
+        <div class="app-add-transaction__top app--flex app--align-center">
+          <i class="material-symbols-outlined xl">attach_money</i>
+          <h3>Adicionar transação</h3>
+        </div>
+
+        <div
+          class="app-add-transaction__content app--mt-4 app--flex app--align-center"
+        >
+          <div
+            id="add-payment"
+            class="app-transaction-button app--flex app--column app--align-center"
+          >
+            <div
+              class="app-transaction-button__icon app--flex app--align-center app--justify-center"
+            >
+              <i class="material-symbols-outlined xxl">attach_money</i>
+            </div>
+            <span class="app--text-sm">Pagamento</span>
+          </div>
+
+          <div
+            id="add-revenue"
+            class="app-transaction-button app--flex app--column app--align-center"
+          >
+            <div
+              class="app-transaction-button__icon app--flex app--align-center app--justify-center"
+            >
+              <i class="material-symbols-outlined xxl">move_to_inbox</i>
+            </div>
+            <span class="app--text-sm">Recebimento</span>
+          </div>
+
+          <div
+            id="add-transferency"
+            class="app-transaction-button app--flex app--column app--align-center"
+          >
+            <div
+              class="app-transaction-button__icon app--flex app--align-center app--justify-center"
+            >
+              <i class="material-symbols-outlined xxl">send</i>
+            </div>
+            <span class="app--text-sm">Transferência</span>
+          </div>
+
+          <form
+            id="transaction-form"
+            class="app--flex app--align-center"
+            action=""
+            method="post"
+          >
+            <fieldset id="title-input" class="app-input app--mr-1">
+              <input
+                class="app-input__field"
+                type="text"
+                id="title"
+                name="title"
+              />
+              <label class="app-input__label" for="title">Título</label>
+            </fieldset>
+            <fieldset id="value-input" class="app-input app--mr-1">
+              <input
+                class="app-input__field"
+                type="number"
+                id="value"
+                name="value"
+              />
+              <label class="app-input__label" for="value">Valor</label>
+            </fieldset>
+            <button id="add-button" style="width: 140px" class="app-button">
+              Adicionar
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <section
+        class="app-transactions app--flex app--column app--full-width app--py-4"
+      >
+        <div
+          class="app-transactions__top app--container app--flex app--align-center"
+        >
+          <i class="material-symbols-outlined xl">layers</i>
+          <h3>Minhas transações</h3>
+        </div>
+
+        <div
+          class="app-transactions__list app--my-3 app--scrollbar app--flex app--column app--full-width"
+        >
+          <h4
+            class="app-transactions__list__date app--container app--full-width"
+          >
+            Hoje
+          </h4>
+          <div
+            class="app-transactions__list__cards app--flex app--full-width app--align-center app--justify-start"
+          >
+            <div class="app-transaction-card">
+              <div class="app-transaction-card__icon">
+                <i class="material-symbols-outlined xxl">attach_money</i>
+              </div>
+              <div
+                class="app-transaction-card__content app--flex app--column app--mr-2"
+              >
+                <span class="app--text-sm">#0001</span>
+                <span class="app--text-md">Conta de luz</span>
+              </div>
+              <div class="app-transaction-card__value app--flex app--align-end">
+                <span class="app--text-sm app--text-semibold">R$</span>
+                <span class="app--text-lg app--text-semibold">200</span>
+                <span class="app--text-sm app--text-semibold">,00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script type="module" src="/lib/app.js"></script>
+    <script type="module">
+      import App from "./lib/app.js";
+
+      window.addEventListener("load", () => {
+        const app = new App("Home");
+      });
+    </script>
+  </body>
 </html>

@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+@import url("./variables.css");
+@import url("./components.css");
+@import url("./helpers.css");
+
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+
+  font-family: "Inter", sans-serif;
+  color: var(--app-color--text);
+}
+
+html {
+  font-size: 75%;
+}
+
+body {
+  background-color: var(--app-color--background);
+}
