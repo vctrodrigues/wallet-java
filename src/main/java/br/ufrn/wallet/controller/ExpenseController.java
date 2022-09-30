@@ -39,7 +39,7 @@ public class ExpenseController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity listExpenses(@PathVariable(name = "id") Long id) {
+  public ResponseEntity getExpense(@PathVariable(name = "id") Long id) {
     try {
       Expense expense = expenseService.getExpenseById(id);
       return new ResponseEntity<>(expense, HttpStatus.OK);
