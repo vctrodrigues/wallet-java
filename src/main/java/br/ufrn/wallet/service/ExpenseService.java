@@ -9,12 +9,12 @@ import br.ufrn.wallet.model.Expense;
 @Service
 public interface ExpenseService {
 
-    public Expense createExpense(Expense expense);
+    public Expense saveExpense(Expense expense);
 
     public void deleteExpense(Expense expense);
 
-    public Expense getExpenseById(Integer id);
+    public Expense getExpenseById(long id);
 
-    public List<Expense> getListExpense();
+    public List<Expense> getExpenses();
 
 }
