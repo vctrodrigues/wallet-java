@@ -1,10 +1,9 @@
 package br.ufrn.wallet.service;
 
-import java.util.List;
-
+import br.ufrn.wallet.model.Transaction;
 import org.springframework.stereotype.Service;
 
-import br.ufrn.wallet.model.Transaction;
+import java.util.Set;
 
 @Service
 public interface TransactionService {
@@ -13,8 +12,8 @@ public interface TransactionService {
 
     public void deleteTransaction(Transaction transaction);
 
-    public Transaction getTransactionById(Integer id);
+    public Transaction getTransactionById(Long id);
 
-    public List<Transaction> getListTransaction();
+    public Set<Transaction> getListTransaction();
 
 }
