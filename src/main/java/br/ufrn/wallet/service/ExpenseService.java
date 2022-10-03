@@ -11,9 +11,9 @@ public interface ExpenseService {
 
     public Expense saveExpense(Expense expense);
 
-    public void deleteExpense(Expense expense);
+    public void deleteExpense(Long id);
 
-    public Expense getExpenseById(long id);
+    public Expense getExpenseById(Long id);
 
     public List<Expense> getExpenses();
 

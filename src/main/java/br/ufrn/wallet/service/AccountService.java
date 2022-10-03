@@ -11,9 +11,9 @@ public interface AccountService {
 
     public Account createAccount(Account account);
 
-    public void deleteAccount(Account account);
+    public void deleteAccount(Long id);
 
-    public Account getAccountById(long id);
+    public Account getAccountById(Long id);
 
     public Account getAccountByEmail(String email);
 

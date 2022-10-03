@@ -10,7 +10,7 @@ public interface TransactionService {
 
     public Transaction createTransaction(Transaction transaction);
 
-    public void deleteTransaction(Transaction transaction);
+    public void deleteTransaction(Long id);
 
     public Transaction getTransactionById(Long id);
 

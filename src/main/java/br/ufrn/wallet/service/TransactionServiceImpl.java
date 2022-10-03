@@ -20,8 +20,8 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public void deleteTransaction(Transaction transaction) {
-        transactionRepository.delete(transaction);
+    public void deleteTransaction(Long id) {
+        transactionRepository.deleteById(id);
     }
 
     @Override

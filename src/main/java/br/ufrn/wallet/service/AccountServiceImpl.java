@@ -20,12 +20,12 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void deleteAccount(Account account) {
-        accountRepository.delete(account);
+    public void deleteAccount(Long id) {
+        accountRepository.deleteById(id);
     }
 
     @Override
-    public Account getAccountById(long id) {
+    public Account getAccountById(Long id) {
         return accountRepository.findById(id).map(account -> {
             return account;
         }).orElseThrow(() -> null);
