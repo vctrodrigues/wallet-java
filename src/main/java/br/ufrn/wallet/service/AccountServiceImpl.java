@@ -2,11 +2,11 @@ package br.ufrn.wallet.service;
 
 import java.util.List;
 
+import br.ufrn.wallet.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.ufrn.wallet.model.Account;
-import br.ufrn.wallet.repository.AccountRepository;
 
 @Component
 public class AccountServiceImpl implements AccountService {
