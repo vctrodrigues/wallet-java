@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -55,13 +54,13 @@ public class ExpenseController {
     try {
       Expense expense = expenseService.getExpenseById(id);
       expense.setDay(expenseForm.getDay())
-              .setCurrency(expenseForm.getCurrency())
-              .setDescription(expenseForm.getDescription())
-              .setValue(expenseForm.getValue());
+          .setCurrency(expenseForm.getCurrency())
+          .setDescription(expenseForm.getDescription())
+          .setValue(expenseForm.getValue());
       Expense expenseSaved = expenseService.saveExpense(expense);
       return new ResponseEntity<>(expenseSaved, HttpStatus.OK);
     } catch (EntityNotFoundException e) {
-      return new ResponseEntity("No expense found with given id: "+ id, HttpStatus.NOT_FOUND);
+      return new ResponseEntity("No expense found with given id: " + id, HttpStatus.NOT_FOUND);
     }
   }
 
@@ -69,9 +68,9 @@ public class ExpenseController {
   public ResponseEntity createExpense(@RequestBody ExpenseForm expenseForm) {
     Expense expense = new Expense();
     expense.setDay(expenseForm.getDay())
-            .setCurrency(expenseForm.getCurrency())
-            .setDescription(expenseForm.getDescription())
-            .setValue(expenseForm.getValue());
+        .setCurrency(expenseForm.getCurrency())
+        .setDescription(expenseForm.getDescription())
+        .setValue(expenseForm.getValue());
     Expense expenseSaved = expenseService.saveExpense(expense);
     return new ResponseEntity<>(expenseSaved, HttpStatus.OK);
   }
