@@ -2,11 +2,11 @@ package br.ufrn.wallet.service;
 
 import java.util.List;
 
+import br.ufrn.wallet.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.ufrn.wallet.model.Account;
-import br.ufrn.wallet.repository.AccountRepository;
 
 @Component
 public class AccountServiceImpl implements AccountService {
@@ -20,12 +20,12 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void deleteAccount(Account account) {
-        accountRepository.delete(account);
+    public void deleteAccount(Long id) {
+        accountRepository.deleteById(id);
     }
 
     @Override
-    public Account getAccountById(long id) {
+    public Account getAccountById(Long id) {
         return accountRepository.findById(id).map(account -> {
             return account;
         }).orElseThrow(() -> null);

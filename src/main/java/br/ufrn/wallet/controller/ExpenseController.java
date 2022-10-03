@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.ufrn.wallet.model.Expense;
-import br.ufrn.wallet.model.ExpenseForm;
+import br.ufrn.wallet.form.ExpenseForm;
 import br.ufrn.wallet.service.ExpenseService;
 
 import javax.persistence.EntityNotFoundException;
@@ -39,7 +39,7 @@ public class ExpenseController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity listExpenses(@PathVariable(name = "id") Long id) {
+  public ResponseEntity getExpense(@PathVariable(name = "id") Long id) {
     try {
       Expense expense = expenseService.getExpenseById(id);
       return new ResponseEntity<>(expense, HttpStatus.OK);
