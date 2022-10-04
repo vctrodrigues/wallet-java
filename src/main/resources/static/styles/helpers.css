@@ -292,6 +292,10 @@
 
 /* TEXT */
 
+.app--text-xs {
+  font-size: 0.8rem;
+}
+
 .app--text-sm {
   font-size: 1rem;
 }

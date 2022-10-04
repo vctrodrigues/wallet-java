@@ -10,12 +10,15 @@ export class Dialog extends Component {
     this.confirm = confirm;
 
     this.trigger = trigger;
-    this.trigger.onClick = this.onOpen;
+    this.trigger.component.click(() => {
+      this.onOpen();
+    });
+
+    this.cancel.component.click(() => this.onClose());
   }
 
   set onConfirm(onConfirm) {
     this.confirm.onClick = onConfirm;
-    this.onClose();
   }
 
   set onCancel(onCancel) {

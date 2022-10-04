@@ -1,6 +1,5 @@
-import { Form, Input, Button, Dialog } from "../components/index.js";
+import { Form, Button, Dialog } from "../components/index.js";
 import { Page } from "./page.js";
-import { useState } from "../hooks/useState.js";
 
 export class Box extends Page {
   constructor() {
@@ -18,17 +17,13 @@ export class Box extends Page {
       new Button("#create-create-button"),
       new Button("#open-create")
     );
-    this.createDialog.onConfirm(this.onCreate);
+    this.createDialog.onConfirm = () => this.onCreate();
 
     this.onLoad();
   }
 
   onLoad() {
-    this.form.setDisabled(true);
-  }
-
-  onTransactionTypeSelected(type) {
-    this.transactionType.value = type;
+    this.createDialog.onClose();
   }
 
   onCreate() {

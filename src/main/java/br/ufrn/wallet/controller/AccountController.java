@@ -48,7 +48,7 @@ public class AccountController {
   public String getAccount(@PathVariable Long id, Model model) {
     Account account = accountService.getAccountById(id);
     Map<Date, List<Transaction>> groupedTransactions = transactionService
-            .listTransactionGroupedByDate(account);
+        .listTransactionGroupedByDate(account);
 
     Transaction transaction = new Transaction();
     transaction.setAccount(account);
@@ -57,11 +57,5 @@ public class AccountController {
     model.addAttribute("account", account);
     model.addAttribute("transaction", transaction);
     return "account/index";
-  }
-
-  @GetMapping("/expenses/{id}")
-  public String accessExpenses(@PathVariable Long id, Model model) {
-    model.addAttribute("account", accountService.getAccountById(id));
-    return "expense/index";
   }
 }

@@ -4,18 +4,12 @@ import br.ufrn.wallet.model.Account;
 import br.ufrn.wallet.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import br.ufrn.wallet.model.Expense;
-import br.ufrn.wallet.form.ExpenseForm;
 import br.ufrn.wallet.service.ExpenseService;
-
-import javax.persistence.EntityNotFoundException;
-import java.util.List;
 
 @Controller
 @RequestMapping("/expense")
@@ -39,10 +33,23 @@ public class ExpenseController {
     return "expense/index";
   }
 
-  @PostMapping("/{id}")
-  public String createExpense(@PathVariable Long id, @ModelAttribute Expense expense, Model model) {
+  @GetMapping("/edit/{accountId}/{id}")
+  public String listExpenses(@PathVariable Long accountId, @PathVariable Long id, Model model) {
+    Account account = accountService.getAccountById(accountId);
+    Expense expense = expenseService.getExpenseById(id);
+
+    model.addAttribute("account", account);
+    model.addAttribute("expenses", expenseService.listExpenses(account));
+    model.addAttribute("expense", expense);
+
+    return "expense/index";
+  }
+
+  @PostMapping("/{accountId}")
+  public String createExpense(@PathVariable Long accountId, @ModelAttribute Expense expense, Model model) {
+    expense.setAccount(accountService.getAccountById(accountId));
     Expense expenseSaved = expenseService.saveExpense(expense);
-    return this.listExpenses(id, model);
+    return this.listExpenses(accountId, model);
   }
 
   @DeleteMapping("/{accountId}/{id}")
@@ -52,13 +59,13 @@ public class ExpenseController {
   }
 
   @PatchMapping("/{accountId}/{id}")
-  public String editEXpenses(@PathVariable Long id, @PathVariable Long accountId, @ModelAttribute Expense expense, Model model) {
+  public String editEXpenses(@PathVariable Long id, @PathVariable Long accountId, @ModelAttribute Expense expense,
+      Model model) {
     Expense e = expenseService.getExpenseById(id);
     e.setDescription(expense.getDescription()).setDay(expense.getDay());
     expenseService.saveExpense(e);
 
     return this.listExpenses(accountId, model);
   }
-
 
 }

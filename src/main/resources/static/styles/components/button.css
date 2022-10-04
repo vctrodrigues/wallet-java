@@ -27,3 +27,14 @@ button.app-button:focus:not(.app-button--disabled) {
   outline: none;
   box-shadow: 0 0 8px 4px var(--app-color--primaryShadow);
 }
+
+button.app-button.app-button--secondary {
+  background: none;
+  background-color: var(--app-color--background);
+}
+
+button.app-button.app-button--secondary:hover:not(.app-button--disabled),
+button.app-button.app-button--secondary:focus:not(.app-button--disabled) {
+  outline: none;
+  box-shadow: 0 0 8px 4px var(--app-color--background50);
+}
