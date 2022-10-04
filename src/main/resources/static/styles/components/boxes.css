@@ -1,0 +1,15 @@
+.app-boxes > .app-boxes__top {
+  gap: 5px;
+}
+
+.app-boxes > .app-boxes__top > i {
+  color: var(--app-color--background200);
+}
+
+.app-boxes > .app-boxes__content {
+  gap: 30px;
+}
+
+.app-boxes > .app-boxes__list {
+  gap: 10px;
+}

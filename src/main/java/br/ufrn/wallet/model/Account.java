@@ -1,7 +1,6 @@
 package br.ufrn.wallet.model;
 
 import javax.persistence.*;
-// import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,17 +21,20 @@ public class Account {
     private String profilePicture;
 
     @OneToMany(mappedBy = "account")
+    private Set<Transaction> transactions;
+
+    @OneToMany(mappedBy = "account")
     private Set<Expense> expenses;
 
     @ManyToMany
     @JoinTable(name = "money_box_accounts", joinColumns = @JoinColumn(name = "account_id"), inverseJoinColumns = @JoinColumn(name = "money_box_id"))
     private Set<MoneyBox> moneyBoxes;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public Account setId(long id) {
+    public Account setId(Long id) {
         this.id = id;
         return this;
     }
@@ -53,6 +55,14 @@ public class Account {
     public Account setEmail(String email) {
         this.email = email;
         return this;
+    }
+
+    public Set<Transaction> getTransactions() {
+        return this.transactions;
+    }
+
+    public void setTransactions(Set<Transaction> transactions) {
+        this.transactions = transactions;
     }
 
     public String getProfilePicture() {

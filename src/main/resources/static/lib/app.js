@@ -7,6 +7,8 @@ export default class App {
   };
 
   constructor(name) {
-    this.page = new this.pages[name]();
+    if (this.pages[name]) {
+      this.page = new this.pages[name]();
+    }
   }
 }

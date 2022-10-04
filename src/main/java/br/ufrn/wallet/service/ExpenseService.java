@@ -2,6 +2,7 @@ package br.ufrn.wallet.service;
 
 import java.util.List;
 
+import br.ufrn.wallet.model.Account;
 import org.springframework.stereotype.Service;
 
 import br.ufrn.wallet.model.Expense;
@@ -15,6 +16,8 @@ public interface ExpenseService {
 
     public Expense getExpenseById(Long id);
 
-    public List<Expense> getExpenses();
+    public List<Expense> listExpenses();
+
+    public List<Expense> listExpenses(Account account);
 
 }

@@ -10,7 +10,7 @@ public class Expense {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "description")
     private String description;
@@ -29,11 +29,11 @@ public class Expense {
     @JoinColumn(name = "account_id")
     private Account account;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public Expense setId(long id) {
+    public Expense setId(Long id) {
         this.id = id;
         return this;
     }

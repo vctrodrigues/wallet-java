@@ -6,8 +6,8 @@ fieldset.app-input {
   position: relative;
   flex-direction: column-reverse;
 
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 fieldset.app-input {
@@ -47,7 +47,10 @@ fieldset.app-input > input.app-input__field {
   background-color: var(--app-color--background400);
 }
 
-fieldset.app-input > input.app-input__field:focus ~ label.app-input__label {
+fieldset.app-input > input.app-input__field:focus ~ label.app-input__label,
+fieldset.app-input
+  > input.app-input__field:not(:placeholder-shown)
+  ~ label.app-input__label {
   top: -20px;
   left: 5px;
 }

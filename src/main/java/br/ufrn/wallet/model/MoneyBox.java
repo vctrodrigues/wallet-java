@@ -1,8 +1,11 @@
 package br.ufrn.wallet.model;
 
 import br.ufrn.wallet.enums.CurrencyEnum;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -29,6 +32,10 @@ public class MoneyBox {
     @ManyToMany
     @JoinTable(name = "money_box_accounts", joinColumns = @JoinColumn(name = "money_box_id"), inverseJoinColumns = @JoinColumn(name = "account_id"))
     private List<Account> participants;
+
+    @CreatedDate
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private Date date;
 
     public long getId() {
         return id;
@@ -83,4 +90,6 @@ public class MoneyBox {
         this.participants = participants;
         return this;
     }
+
+
 }

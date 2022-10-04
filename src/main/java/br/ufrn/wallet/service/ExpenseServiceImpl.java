@@ -2,6 +2,7 @@ package br.ufrn.wallet.service;
 
 import java.util.List;
 
+import br.ufrn.wallet.model.Account;
 import br.ufrn.wallet.repository.ExpenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -32,7 +33,12 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
-    public List<Expense> getExpenses() {
+    public List<Expense> listExpenses() {
         return expenseRepository.findAll();
+    }
+
+    @Override
+    public List<Expense> listExpenses(Account account) {
+        return expenseRepository.findByAccount(account);
     }
 }

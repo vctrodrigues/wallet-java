@@ -2,24 +2,26 @@ package br.ufrn.wallet.model;
 
 import br.ufrn.wallet.enums.CurrencyEnum;
 import br.ufrn.wallet.enums.TransactionTypeEnum;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "Transaction")
+@EntityListeners(AuditingEntityListener.class)
 public class Transaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "accountPayer")
-    private Account accountPayer;
-
-    @OneToOne
-    @JoinColumn(name = "accountReceiver")
-    private Account accountReceiver;
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
 
     @Column(name = "title")
     private String title;
@@ -35,11 +37,15 @@ public class Transaction {
     @Column(name = "value")
     private Double value;
 
-    public long getId() {
+    @CreatedDate
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private Date date;
+
+    public Long getId() {
         return id;
     }
 
-    public Transaction setId(long id) {
+    public Transaction setId(Long id) {
         this.id = id;
         return this;
     }
@@ -79,4 +85,22 @@ public class Transaction {
         this.value = value;
         return this;
     }
+
+    public Account getAccount() {
+        return this.account;
+    }
+
+    public Transaction setAccount(Account account) {
+        this.account = account;
+        return this;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }
+

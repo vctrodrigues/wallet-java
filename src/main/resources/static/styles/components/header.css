@@ -8,7 +8,7 @@ header.app-header > nav.app-header__nav > ul.app-header__nav__list {
 header.app-header
   > nav.app-header__nav
   > ul.app-header__nav__list
-  > li.app-header__nav__list__item {
+  > li.app-header__nav__list__item > a {
   gap: 5px;
   cursor: pointer;
 }
@@ -17,7 +17,7 @@ header.app-header
   > nav.app-header__nav
   > ul.app-header__nav__list
   > li.app-header__nav__list__item
-  > * {
+  * {
   transition: var(--app-transition--2);
 }
 
@@ -25,7 +25,7 @@ header.app-header
   > nav.app-header__nav
   > ul.app-header__nav__list
   > li.app-header__nav__list__item:not(.app-header__nav__list__item--no-tab)
-  > * {
+  * {
   color: var(--app-color--background400);
 }
 
@@ -33,7 +33,7 @@ header.app-header
   > nav.app-header__nav
   > ul.app-header__nav__list
   > li.app-header__nav__list__item:hover:not(.app-header__nav__list__item--no-tab)
-  > * {
+  * {
   color: var(--app-color--background200);
 }
 
@@ -41,6 +41,6 @@ header.app-header
   > nav.app-header__nav
   > ul.app-header__nav__list
   > li.app-header__nav__list__item--active:not(.app-header__nav__list__item--no-tab)
-  > * {
+  * {
   color: var(--app-color--text);
 }

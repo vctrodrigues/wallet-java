@@ -1,163 +1,74 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/pages/login.css" />
     <link rel="stylesheet" href="/styles/main.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet"
     />
-    <title>Wallet</title>
+    <title>Login | Wallet</title>
   </head>
   <body>
-    <header
-      class="app-header app--full-width app--container app--sticky app--flex app--align-center app--justify-between"
-    >
-      <div class="app-logo app--px-2 app--py-4">
-        <img class="app-logo__img" src="/img/logo.svg" alt="Logo Wallet" />
-      </div>
-      <nav class="app-header__nav">
-        <ul class="app-header__nav__list app--flex">
-          <li class="app-header__nav__list__item app--flex app--align-center">
-            <i class="material-symbols-outlined md">archive</i>
-            <span class="app--text-sm app--text-semibold">
-              Minhas caixinhas
-            </span>
-          </li>
-          <li class="app-header__nav__list__item app--flex app--align-center">
-            <i class="material-symbols-outlined md">request_quote</i>
-            <span class="app--text-sm app--text-semibold">Custos fixos</span>
-          </li>
-          <li
-            class="app-header__nav__list__item app-header__nav__list__item--no-tab app--flex app--ml-1 app--align-center"
-          >
-            <span class="app--text-sm app--text-semibold">
-              Olá, <span class="app--text-semibold">User</span>
-            </span>
-          </li>
-        </ul>
-      </nav>
-    </header>
-
-    <main class="app-main app--full-width">
+    <main class="app-main app--full-width app--flex">
       <section
-        class="app-add-transaction app--container app--flex app--column app--full-width app--py-4"
+        class="app-main__column app--column app--flex app--justify-center"
       >
-        <div class="app-add-transaction__top app--flex app--align-center">
-          <i class="material-symbols-outlined xl">attach_money</i>
-          <h3>Adicionar transação</h3>
-        </div>
-
-        <div
-          class="app-add-transaction__content app--mt-4 app--flex app--align-center"
-        >
-          <div
-            id="add-payment"
-            class="app-transaction-button app--flex app--column app--align-center"
-          >
-            <div
-              class="app-transaction-button__icon app--flex app--align-center app--justify-center"
-            >
-              <i class="material-symbols-outlined xxl">attach_money</i>
-            </div>
-            <span class="app--text-sm">Pagamento</span>
-          </div>
-
-          <div
-            id="add-revenue"
-            class="app-transaction-button app--flex app--column app--align-center"
-          >
-            <div
-              class="app-transaction-button__icon app--flex app--align-center app--justify-center"
-            >
-              <i class="material-symbols-outlined xxl">move_to_inbox</i>
-            </div>
-            <span class="app--text-sm">Recebimento</span>
-          </div>
-
-          <div
-            id="add-transferency"
-            class="app-transaction-button app--flex app--column app--align-center"
-          >
-            <div
-              class="app-transaction-button__icon app--flex app--align-center app--justify-center"
-            >
-              <i class="material-symbols-outlined xxl">send</i>
-            </div>
-            <span class="app--text-sm">Transferência</span>
-          </div>
-
-          <form
-            id="transaction-form"
-            class="app--flex app--align-center"
-            action=""
-            method="post"
-          >
-            <fieldset id="title-input" class="app-input app--mr-1">
-              <input
-                class="app-input__field"
-                type="text"
-                id="title"
-                name="title"
-              />
-              <label class="app-input__label" for="title">Título</label>
-            </fieldset>
-            <fieldset id="value-input" class="app-input app--mr-1">
-              <input
-                class="app-input__field"
-                type="number"
-                id="value"
-                name="value"
-              />
-              <label class="app-input__label" for="value">Valor</label>
-            </fieldset>
-            <button id="add-button" style="width: 140px" class="app-button">
-              Adicionar
-            </button>
-          </form>
-        </div>
+        <img src="/img/logo.svg" class="app-main__logo" alt="Logotipo Wallet" />
+        <p class="app-main__text app--text-md">
+          A resposta para sua gestão financeira
+        </p>
+        <div class="app-main__networks"></div>
       </section>
 
       <section
-        class="app-transactions app--flex app--column app--full-width app--py-4"
+        class="app-main__column app--column app--flex app--pa-4 app--justify-center app--align-center"
       >
         <div
-          class="app-transactions__top app--container app--flex app--align-center"
+          class="app-main__column__container app--flex app--column app--pa-4 app--align-center"
         >
-          <i class="material-symbols-outlined xl">layers</i>
-          <h3>Minhas transações</h3>
-        </div>
-
-        <div
-          class="app-transactions__list app--my-3 app--scrollbar app--flex app--column app--full-width"
-        >
-          <h4
-            class="app-transactions__list__date app--container app--full-width"
+          <h2 class="app--text-xl app--text-center app--mb-4">
+            Faça seu login
+          </h2>
+          <form
+            class="app-main__form app--flex app--column"
+            th:action="@{/account}"
+            th:object="${account}"
+            method="post"
           >
-            Hoje
-          </h4>
-          <div
-            class="app-transactions__list__cards app--flex app--full-width app--align-center app--justify-start"
-          >
-            <div class="app-transaction-card">
-              <div class="app-transaction-card__icon">
-                <i class="material-symbols-outlined xxl">attach_money</i>
-              </div>
-              <div
-                class="app-transaction-card__content app--flex app--column app--mr-2"
-              >
-                <span class="app--text-sm">#0001</span>
-                <span class="app--text-md">Conta de luz</span>
-              </div>
-              <div class="app-transaction-card__value app--flex app--align-end">
-                <span class="app--text-sm app--text-semibold">R$</span>
-                <span class="app--text-lg app--text-semibold">200</span>
-                <span class="app--text-sm app--text-semibold">,00</span>
-              </div>
-            </div>
-          </div>
+            <fieldset id="email-input" class="app-input">
+              <input
+                class="app-input__field"
+                type="email"
+                id="email"
+                name="email"
+                th:field="*{email}"
+                placeholder=" "
+              />
+              <label class="app-input__label" for="email">E-mail</label>
+            </fieldset>
+            <fieldset id="password-input" class="app-input">
+              <input
+                class="app-input__field"
+                type="password"
+                id="password"
+                name="password"
+                placeholder=" "
+              />
+              <label class="app-input__label" for="password">Senha</label>
+            </fieldset>
+            <button
+              id="signin-button"
+              type="submit"
+              style="width: 100%"
+              class="app-button app--mt-2"
+            >
+              Entrar
+            </button>
+          </form>
         </div>
       </section>
     </main>
@@ -168,7 +79,7 @@
       import App from "./lib/app.js";
 
       window.addEventListener("load", () => {
-        const app = new App("Home");
+        const app = new App("Login");
       });
     </script>
   </body>

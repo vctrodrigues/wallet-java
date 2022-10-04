@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml">
+<html
+  lang="pt-BR"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+>
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -23,27 +27,115 @@
           <li
             class="app-header__nav__list__item app-header__nav__list__item--active app--flex app--align-center"
           >
-            <i class="material-symbols-outlined md">archive</i>
-            <span class="app--text-sm app--text-semibold">
-              Minhas caixinhas
-            </span>
+            <a th:href="@{/account/boxes/{id}(id=${account.id})}">
+              <i class="material-symbols-outlined md">archive</i>
+              <span class="app--text-sm app--text-semibold">
+                Minhas caixinhas
+              </span>
+            </a>
           </li>
           <li class="app-header__nav__list__item app--flex app--align-center">
-            <i class="material-symbols-outlined md">request_quote</i>
-            <span class="app--text-sm app--text-semibold">Custos fixos</span>
+            <a th:href="@{/account/expenses/{id}(id=${account.id})}">
+              <i class="material-symbols-outlined md">request_quote</i>
+              <span class="app--text-sm app--text-semibold">Custos fixos</span>
+            </a>
           </li>
           <li
             class="app-header__nav__list__item app-header__nav__list__item--no-tab app--flex app--ml-1 app--align-center"
           >
             <span class="app--text-sm app--text-semibold">
-              Olá, <span class="app--text-semibold">User</span>
+              Olá,
+              <span class="app--text-semibold" th:text="${account.name}"></span>
             </span>
           </li>
         </ul>
       </nav>
     </header>
 
-    <main class="app-main app--full-width"></main>
+    <main class="app-main app--full-width">
+      <section
+        class="app-boxes app--flex app--column app--full-width app--py-4"
+      >
+        <div class="app-boxes__top app--container app--flex app--align-center">
+          <i class="material-symbols-outlined xl">archive</i>
+          <h3>Minhas caixinhas</h3>
+        </div>
+
+        <div class="app-boxes__list app--my-3 app--flex app--container">
+          <div class="app-box-card app--flex app--column app--align-start">
+            <div class="app-box-card__content app--flex app--column">
+              <span class="app--text-sm">#0001</span>
+              <span class="app--text-md app--mt-1">Nome da caixinha</span>
+            </div>
+            <div class="app-box-card__value">
+              <span class="app--text-sm app--my-2 app--text-semibold">
+                R$
+              </span>
+              <span class="app--text-lg app--my-2 app--text-semibold">
+                20.000,00
+              </span>
+            </div>
+            <div class="app-box-card__footer app--flex app--column">
+              <a href="#" class="app--text-sm">Adicionar dinheiro</a>
+              <a href="#" class="app--text-sm">Editar caixinha</a>
+              <a href="#" class="app--text-sm app--text-danger">
+                Excluir caixinha
+              </a>
+            </div>
+          </div>
+
+          <div
+            class="app-box-card app-box-card--outlined app--flex app--column app--align-start"
+          >
+            <div class="app-box-card__content app--flex app--column">
+              <div class="material-symbols-outlined">archive</div>
+              <span class="app--text-semibold">Adicionar caixinha</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="create-dialog" class="app-dialog">
+      <div class="app-dialog__top">
+        <h2>Criar caixinha</h2>
+      </div>
+      <div class="app-dialog__content">
+        <form
+          id="create-form"
+          action=""
+          th:object="${box}"
+          class="app--flex app--column app--full-width"
+        >
+          <fieldset id="name-input" class="app-input app--mr-1">
+            <input
+              class="app-input__field"
+              type="text"
+              id="name"
+              name="name"
+              th:field="*{name}"
+              placeholder=" "
+            />
+            <label class="app-input__label" for="name">Nome da caixinha</label>
+          </fieldset>
+          <fieldset id="value-input" class="app-input app--mr-1">
+            <input
+              class="app-input__field"
+              type="number"
+              id="value"
+              name="value"
+              th:field="*{value}"
+              placeholder=" "
+            />
+            <label class="app-input__label" for="value">Valor inicial</label>
+          </fieldset>
+        </form>
+      </div>
+      <div class="app-dialog__footer app--flex app--justify-end">
+        <button id="create-cancel-button" class="app-button">Cancelar</button>
+        <button id="create-create-button" class="app-button">Criar</button>
+      </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script type="module" src="/lib/app.js"></script>

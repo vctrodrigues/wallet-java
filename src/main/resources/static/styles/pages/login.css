@@ -1,0 +1,38 @@
+.app-main__text {
+  width: 200px;
+}
+
+.app-main__column {
+  width: 50%;
+  min-height: 100vh;
+
+  padding: 80px;
+}
+
+.app-main__column:nth-child(1) {
+  gap: 20px;
+  background-color: var(--app-color--primary);
+
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.app-main__logo {
+  height: 60px;
+  width: fit-content;
+}
+
+.app-main__form {
+  width: 100%;
+}
+
+.app-main__form > .app-input {
+  width: 100%;
+}
+
+.app-main__column__container {
+  width: 500px;
+  padding: 80px;
+  background-color: var(--app-color--background600);
+  border-radius: 6px;
+}

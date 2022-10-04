@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+            rel="stylesheet"
+    />
+    <title>Minhas caixinhas | Wallet</title>
+</head>
+<body>
+<header
+        class="app-header app--full-width app--container app--sticky app--flex app--align-center app--justify-between"
+>
+    <div class="app-logo app--px-2 app--py-4">
+        <img class="app-logo__img" src="/img/logo.svg" alt="Logo Wallet" />
+    </div>
+    <nav class="app-header__nav">
+        <ul class="app-header__nav__list app--flex">
+            <li
+                    class="app-header__nav__list__item app-header__nav__list__item--active app--flex app--align-center"
+            >
+                <a th:href="@{/boxes}">
+                    <i class="material-symbols-outlined md">archive</i>
+                    <span class="app--text-sm app--text-semibold">
+                Minhas caixinhas
+              </span>
+                </a>
+            </li>
+            <li class="app-header__nav__list__item app--flex app--align-center">
+                <a th:href="@{/expenses}">
+                    <i class="material-symbols-outlined md">request_quote</i>
+                    <span class="app--text-sm app--text-semibold">Custos fixos</span>
+                </a>
+            </li>
+            <li
+                    class="app-header__nav__list__item app-header__nav__list__item--no-tab app--flex app--ml-1 app--align-center"
+            >
+            <span class="app--text-sm app--text-semibold">
+              Olá, <span class="app--text-semibold" th:text="${account.name}"></span>
+            </span>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main class="app-main app--full-width"></main>
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script type="module" src="/lib/app.js"></script>
+<script type="module">
+      import App from "./lib/app.js";
+
+      window.addEventListener("load", () => {
+        const app = new App("Box");
+      });
+    </script>
+</body>
+</html>

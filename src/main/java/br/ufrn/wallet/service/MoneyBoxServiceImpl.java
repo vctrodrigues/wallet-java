@@ -3,14 +3,16 @@ package br.ufrn.wallet.service;
 import br.ufrn.wallet.model.MoneyBox;
 import br.ufrn.wallet.repository.MoneyBoxRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
 public class MoneyBoxServiceImpl implements MoneyBoxService {
-    
+
     @Autowired
     MoneyBoxRepository moneyBoxRepository;
 
@@ -32,8 +34,8 @@ public class MoneyBoxServiceImpl implements MoneyBoxService {
     }
 
     @Override
-    public Set<MoneyBox> getListMoneyBox() {
-        return moneyBoxRepository.findAll().stream().collect(Collectors.toSet());
+    public List<MoneyBox> listMoneyBoxesByAccount(Long id) {
+        return moneyBoxRepository.findByParticipants_Id(id);
     }
 
 }

@@ -312,6 +312,14 @@
   font-weight: 700;
 }
 
+.app--text-center {
+  text-align: center;
+}
+
+.app--text-danger {
+  color: var(--app-color--secondary);
+}
+
 /* SCROLLBAR */
 
 .app--scrollbar::-webkit-scrollbar {
