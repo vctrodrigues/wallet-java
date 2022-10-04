@@ -85,8 +85,8 @@
                 <span class="app--text-md" th:text="${#strings.substring(a.name, 0, 1)}">
                 </span>
               </div>
-              <div class="open-add-person app-box-card__person" th:data-id="${box.id}">
-                <i class="material-symbols-outlined lg" th:data-id="${box.id}">
+              <div class="open-add-person app-box-card__person" th:data-id="${box.id}" th:data-account-id="${account.id}">
+                <i class="material-symbols-outlined lg" th:data-id="${box.id}" th:data-account-id="${account.id}">
                   add
                 </i>
               </div>

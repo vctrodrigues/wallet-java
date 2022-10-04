@@ -61,14 +61,14 @@ public class MoneyBoxController {
         return this.listBoxes(accountId, model);
     }
 
-    @PostMapping("/include/{id}/{accountId}")
-    public String includePerson(@PathVariable Long id, @PathVariable Long accountId,
+    @PostMapping("/include/{ownerId}/{id}/{accountId}")
+    public String includePerson(@PathVariable Long ownerId, @PathVariable Long id, @PathVariable Long accountId,
             Model model) {
         MoneyBox b = moneyBoxService.getMoneyBoxById(id);
         b.addParticipants(accountService.getAccountById(accountId));
         moneyBoxService.createMoneyBox(b);
 
-        return this.listBoxes(accountId, model);
+        return this.listBoxes(ownerId, model);
     }
 
     @PostMapping("/edit/{accountId}/{id}")

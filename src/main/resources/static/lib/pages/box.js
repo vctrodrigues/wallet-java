@@ -137,25 +137,29 @@ export class Box extends Page {
     );
 
     this.boxId = "";
+    this.ownerId = "";
 
     $("#add-person").change((e) => {
       const accountId = $(e.target).val();
 
       this.addPersonForm.component.attr(
         "action",
-        `/boxes/include/${this.boxId}/${accountId}`
+        `/boxes/include/${this.ownerId}/${this.boxId}/${accountId}`
       );
     });
 
     this.addPersonLink.onClick = (e) => {
       const component = $(e.target);
       this.boxId = component.attr("data-id");
+      this.ownerId = component.attr("data-account-id");
     };
 
     this.addPersonDialog.onConfirm = () => this.onAddPerson();
     this.addPersonDialog.onCancel = () => {
       this.addPersonForm.component.attr("action", ``);
       $("#add-person").val("");
+      this.boxId = "";
+      this.ownerId = "";
     };
 
     this.onLoad();
