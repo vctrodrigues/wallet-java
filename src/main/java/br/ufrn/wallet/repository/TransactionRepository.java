@@ -10,6 +10,6 @@ import java.util.Set;
 
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 
-    @Query("SELECT t FROM Transaction t WHERE t.account = ?1 ORDER BY date DESC, id DESC")
+    @Query("SELECT t FROM Transaction t WHERE t.account = ?1 ORDER BY date DESC")
     public Set<Transaction> findByAccount(@Param("account") Account account);
 }

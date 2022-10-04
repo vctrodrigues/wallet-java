@@ -26,7 +26,7 @@ fieldset.app-input > label.app-input__label {
   transition: var(--app-transition--2);
 }
 
-fieldset.app-input > input.app-input__field {
+fieldset.app-input > .app-input__field {
   border: 0;
   padding: 10px 15px;
 
@@ -36,27 +36,27 @@ fieldset.app-input > input.app-input__field {
   transition: var(--app-transition--2);
 }
 
-fieldset.app-input > input.app-input__field::placeholder {
+fieldset.app-input > .app-input__field::placeholder {
   opacity: 0;
 }
 
-fieldset.app-input > input.app-input__field {
+fieldset.app-input > .app-input__field {
   border: 0;
   padding: 10px;
   border-radius: 5px;
   background-color: var(--app-color--background400);
 }
 
-fieldset.app-input > input.app-input__field:focus ~ label.app-input__label,
+fieldset.app-input > .app-input__field:focus ~ label.app-input__label,
 fieldset.app-input
-  > input.app-input__field:not(:placeholder-shown)
+  > .app-input__field:not(:placeholder-shown)
   ~ label.app-input__label {
   top: -20px;
   left: 5px;
 }
 
-fieldset.app-input:not(.app-input--disabled) > input.app-input__field:focus,
-fieldset.app-input:not(.app-input--disabled) > input.app-input__field:hover {
+fieldset.app-input:not(.app-input--disabled) > .app-input__field:focus,
+fieldset.app-input:not(.app-input--disabled) > .app-input__field:hover {
   outline: none;
   background-color: var(--app-color--background600);
 }

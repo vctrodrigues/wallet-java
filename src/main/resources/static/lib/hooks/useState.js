@@ -3,7 +3,10 @@ export function useState(defaultValue, watcher) {
     _value: defaultValue,
 
     set value(value) {
-      watcher(value, this._value);
+      if (watcher) {
+        watcher(value, this._value);
+      }
+
       this._value = value;
     },
 

@@ -9,7 +9,10 @@ import java.util.List;
 public interface MoneyBoxService {
 
     public List<MoneyBox> listMoneyBoxesByAccount(Long id);
+
     public MoneyBox createMoneyBox(MoneyBox moneyBox);
-    public void deleteMoneyBox(MoneyBox moneyBox);
+
+    public void deleteMoneyBox(Long id);
+
     public MoneyBox getMoneyBoxById(Long id);
 }

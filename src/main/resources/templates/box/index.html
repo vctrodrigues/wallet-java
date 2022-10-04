@@ -80,10 +80,38 @@
               >
               </span>
             </div>
+            <div class="app-box-card__people app--flex">
+              <div th:each="a : ${box.participants}" class="app-box-card__person" th:title="${a.name} + ' (' + ${a.email} + ')' ">
+                <span class="app--text-md" th:text="${#strings.substring(a.name, 0, 1)}">
+                </span>
+              </div>
+              <div class="open-add-person app-box-card__person" th:data-id="${box.id}">
+                <i class="material-symbols-outlined lg" th:data-id="${box.id}">
+                  add
+                </i>
+              </div>
+            </div>
             <div class="app-box-card__footer app--flex app--column">
-              <a href="#" class="app--text-xs">Adicionar dinheiro</a>
-              <a href="#" class="app--text-xs">Editar caixinha</a>
-              <a href="#" class="app--text-xs app--text-danger">
+              <a
+                href="#"
+                th:data-id="${box.id}"
+                th:data-account-id="${account.id}"
+                class="open-add-money app--text-xs"
+                >
+                Adicionar dinheiro
+              </a>
+              <a href="#"
+                class="open-edit app--text-xs"
+                th:data-id="${box.id}"
+                th:data-name="${box.name}"
+                th:data-value="${box.value}"
+                th:data-account-id="${account.id}">Editar caixinha</a>
+              <a
+                href="#"
+                th:data-id="${box.id}"
+                th:data-account-id="${account.id}"
+                class="open-delete app--text-xs app--text-danger"
+              >
                 Excluir caixinha
               </a>
             </div>
@@ -151,51 +179,159 @@
       </div>
     </div>
 
-    <div th:if="${box.id == null}" id="edit-dialog" class="app-dialog">
+    <div id="delete-dialog" class="app-dialog">
+      <div class="app-dialog__top">
+        <h2>Deletar caixinha</h2>
+      </div>
+      <div class="app-dialog__content">
+        <form
+          id="delete-form"
+          method="post"
+          class="app--flex app--column app--full-width"
+        >
+          <span>Tem certeza que deseja excluir essa caixinha?</span>
+          <span class="app--text-semibold app--mt-1">
+            Essa ação não poderá ser desfeita.
+          </span>
+        </form>
+      </div>
+      <div class="app-dialog__footer app--flex app--justify-end">
+        <button
+          id="delete-cancel-button"
+          class="app-button app-button--secondary"
+        >
+          Cancelar
+        </button>
+        <button id="delete-confirm-button" class="app-button">Excluir</button>
+      </div>
+    </div>
+
+    <div id="add-money-dialog" class="app-dialog">
+      <div class="app-dialog__top">
+        <h2>Adicionar dinheiro</h2>
+      </div>
+      <div class="app-dialog__content">
+        <form
+          id="add-money-form"
+          method="post"
+          th:object="${box}"
+          class="app--flex app--column app--full-width"
+        >
+          <fieldset id="add-value-input" class="app-input">
+            <input
+              class="app-input__field"
+              type="text"
+              id="add-value"
+              name="add-value"
+              th:field="*{value}"
+              placeholder=" "
+            />
+            <label class="app-input__label" for="add-value">Nova quantia</label>
+          </fieldset>
+        </form>
+      </div>
+      <div class="app-dialog__footer app--flex app--justify-end">
+        <button
+          id="add-money-cancel-button"
+          class="app-button app-button--secondary"
+        >
+          Cancelar
+        </button>
+        <button id="add-money-confirm-button" class="app-button">
+          Adicionar
+        </button>
+      </div>
+    </div>
+    
+    <div id="add-person-dialog" class="app-dialog">
+      <div class="app-dialog__top">
+        <h2>Adicionar participante</h2>
+      </div>
+      <div class="app-dialog__content">
+        <form
+          id="add-person-form"
+          method="post"
+          class="app--flex app--column app--full-width"
+        >
+          <fieldset id="add-person-input" class="app-input">
+            <select
+              class="app-input__field"
+              type="text"
+              id="add-person"
+              name="add-person"
+              placeholder=" "
+            >
+              <option th:each="a : ${accounts}" th:value="${a.id}" th:text="${a.name}"></option>
+            </select>
+            <label class="app-input__label" for="add-person">Nova quantia</label>
+          </fieldset>
+        </form>
+      </div>
+      <div class="app-dialog__footer app--flex app--justify-end">
+        <button
+          id="add-person-cancel-button"
+          class="app-button app-button--secondary"
+        >
+          Cancelar
+        </button>
+        <button id="add-person-confirm-button" class="app-button">
+          Adicionar
+        </button>
+      </div>
+    </div>
+    
+    <div id="edit-dialog" class="app-dialog">
       <div class="app-dialog__top">
         <h2>Editar caixinha</h2>
       </div>
       <div class="app-dialog__content">
         <form
           id="edit-form"
-          th:action="@{/boxes/{accountId}/{id}(accountId=${account.id},id=${box.id})}"
-          th:object="${box}"
-          method="patch"
+          method="post"
           class="app--flex app--column app--full-width"
+          th:object="${box}"
         >
-          <fieldset id="name-input" class="app-input">
+          <fieldset id="edit-name-input" class="app-input">
             <input
               class="app-input__field"
               type="text"
-              id="name"
-              name="name"
+              id="edit-name"
+              name="edit-name"
               th:field="*{name}"
               placeholder=" "
             />
-            <label class="app-input__label" for="name">Nome da caixinha</label>
+            <label class="app-input__label" for="edit-name">Nome da caixinha</label>
           </fieldset>
-          <fieldset id="value-input" class="app-input">
+          <fieldset id="edit-value-input" class="app-input">
             <input
               class="app-input__field"
               type="number"
-              id="value"
-              name="value"
+              id="edit-value"
+              name="edit-value"
               th:field="*{value}"
               placeholder=" "
             />
-            <label class="app-input__label" for="value">Valor inicial</label>
-          </fieldset>
-        </form>
+            <label class="app-input__label" for="edit-value">Valor da caixinha</label>
+          </form>
+        </fieldset>
       </div>
       <div class="app-dialog__footer app--flex app--justify-end">
-        <button id="edit-edit-button" class="app-button">Salvar</button>
+        <button
+          id="edit-cancel-button"
+          class="app-button app-button--secondary"
+        >
+          Cancelar
+        </button>
+        <button id="edit-confirm-button" class="app-button">
+          Salvar
+        </button>
       </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script type="module" src="/lib/app.js"></script>
     <script type="module">
-      import App from "../lib/app.js";
+      import App from "/lib/app.js";
 
       window.addEventListener("load", () => {
         const app = new App("Box");

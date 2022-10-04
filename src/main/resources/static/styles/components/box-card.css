@@ -56,3 +56,30 @@
 .app-box-card > .app-box-card__value > span:nth-child(1) {
   margin-right: 5px;
 }
+
+.app-box-card__person {
+  cursor: pointer;
+  border-radius: 100%;
+
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-right: -10px;
+
+  border: 2px solid var(--app-color--background600);
+
+  background-color: var(--app-color--background200);
+  transition: var(--app-transition--2);
+}
+
+.app-box-card__person > * {
+  color: var(--app-color--background400);
+}
+
+.app-box-card__person:hover {
+  filter: brightness(1.25);
+}

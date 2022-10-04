@@ -1,5 +1,6 @@
 package br.ufrn.wallet.controller;
 
+import br.ufrn.wallet.model.Expense;
 import br.ufrn.wallet.model.MoneyBox;
 import br.ufrn.wallet.service.AccountService;
 import br.ufrn.wallet.service.MoneyBoxService;
@@ -24,23 +25,13 @@ public class MoneyBoxController {
     private AccountService accountService;
 
     @GetMapping("/{accountId}")
-    public String accessBoxes(@PathVariable Long accountId, Model model) {
+    public String listBoxes(@PathVariable Long accountId, Model model) {
         List<MoneyBox> moneyBoxes = moneyBoxService.listMoneyBoxesByAccount(accountId);
 
         model.addAttribute("boxes", moneyBoxes);
         model.addAttribute("box", new MoneyBox());
         model.addAttribute("account", accountService.getAccountById(accountId));
-        return "box/index";
-    }
-
-    @GetMapping("/{accountId}/edit/{id}")
-    public String accessBoxes(@PathVariable Long accountId, @PathVariable Long id, Model model) {
-        List<MoneyBox> moneyBoxes = moneyBoxService.listMoneyBoxesByAccount(accountId);
-        MoneyBox moneyBox = moneyBoxService.getMoneyBoxById(id);
-
-        model.addAttribute("boxes", moneyBoxes);
-        model.addAttribute("box", moneyBox);
-        model.addAttribute("account", accountService.getAccountById(accountId));
+        model.addAttribute("accounts", accountService.getAccounts());
         return "box/index";
     }
 
@@ -49,12 +40,44 @@ public class MoneyBoxController {
         box.addParticipants(accountService.getAccountById(accountId));
 
         MoneyBox moneyBoxSaved = moneyBoxService.createMoneyBox(box);
-        List<MoneyBox> moneyBoxes = moneyBoxService.listMoneyBoxesByAccount(accountId);
 
-        model.addAttribute("boxes", moneyBoxes);
-        model.addAttribute("box", new MoneyBox());
-        model.addAttribute("account", accountService.getAccountById(accountId));
+        return this.listBoxes(accountId, model);
+    }
 
-        return "box/index";
+    @PostMapping("/delete/{accountId}/{id}")
+    public String deleteExpense(@PathVariable Long id, @PathVariable Long accountId, Model model) {
+        moneyBoxService.deleteMoneyBox(id);
+        return this.listBoxes(accountId, model);
+    }
+
+    @PostMapping("/add/{accountId}/{id}")
+    public String addMoneyToMoneyBox(@PathVariable Long id, @PathVariable Long accountId,
+            @ModelAttribute MoneyBox moneyBox,
+            Model model) {
+        MoneyBox b = moneyBoxService.getMoneyBoxById(id);
+        b.setValue(moneyBox.getValue() + b.getValue());
+        moneyBoxService.createMoneyBox(b);
+
+        return this.listBoxes(accountId, model);
+    }
+
+    @PostMapping("/include/{id}/{accountId}")
+    public String includePerson(@PathVariable Long id, @PathVariable Long accountId,
+            Model model) {
+        MoneyBox b = moneyBoxService.getMoneyBoxById(id);
+        b.addParticipants(accountService.getAccountById(accountId));
+        moneyBoxService.createMoneyBox(b);
+
+        return this.listBoxes(accountId, model);
+    }
+
+    @PostMapping("/edit/{accountId}/{id}")
+    public String editMoneyBox(@PathVariable Long id, @PathVariable Long accountId, @ModelAttribute MoneyBox moneyBox,
+            Model model) {
+        MoneyBox b = moneyBoxService.getMoneyBoxById(id);
+        b.setValue(moneyBox.getValue()).setName(moneyBox.getName());
+        moneyBoxService.createMoneyBox(b);
+
+        return this.listBoxes(accountId, model);
     }
 }

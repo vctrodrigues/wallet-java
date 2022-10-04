@@ -1,6 +1,7 @@
 package br.ufrn.wallet.controller;
 
 import br.ufrn.wallet.enums.CurrencyEnum;
+import br.ufrn.wallet.model.Account;
 import br.ufrn.wallet.model.Transaction;
 import br.ufrn.wallet.service.AccountService;
 import br.ufrn.wallet.service.TransactionService;
@@ -52,15 +53,19 @@ public class TransactionController {
         }
     }
 
-    @PostMapping
-    public String createTransaction(@ModelAttribute Transaction transaction, Model model) {
+    @PostMapping("/{accountId}")
+    public String createTransaction(@PathVariable Long accountId, @ModelAttribute Transaction transaction,
+            Model model) {
+        Account account = accountService.getAccountById(accountId);
+        transaction.setAccount(account);
         transaction.setCurrency(CurrencyEnum.BRL);
         Transaction transactionSaved = transactionService.createTransaction(transaction);
-        Map<Date, List<Transaction>> groupedTransactions = transactionService.listTransactionGroupedByDate(transactionSaved.getAccount());
+        Map<Date, List<Transaction>> groupedTransactions = transactionService
+                .listTransactionGroupedByDate(transactionSaved.getAccount());
 
         model.addAttribute("transactions", groupedTransactions);
         model.addAttribute("transaction", new Transaction());
-        model.addAttribute("account", accountService.getAccountById(transaction.getAccount().getId()));
+        model.addAttribute("account", account);
 
         return "account/index";
     }

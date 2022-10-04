@@ -19,8 +19,8 @@ public class MoneyBoxServiceImpl implements MoneyBoxService {
     }
 
     @Override
-    public void deleteMoneyBox(MoneyBox moneyBox) {
-        moneyBoxRepository.delete(moneyBox);
+    public void deleteMoneyBox(Long id) {
+        moneyBoxRepository.deleteById(id);
     }
 
     @Override

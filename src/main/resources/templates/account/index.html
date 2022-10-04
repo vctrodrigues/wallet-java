@@ -25,7 +25,7 @@
       <nav class="app-header__nav">
         <ul class="app-header__nav__list app--flex">
           <li class="app-header__nav__list__item app--flex app--align-center">
-            <a th:href="@{/account/boxes/{id}(id=${account.id})}">
+            <a th:href="@{/boxes/{id}(id=${account.id})}">
               <i class="material-symbols-outlined md">archive</i>
               <span class="app--text-sm app--text-semibold">
                 Minhas caixinhas
@@ -33,7 +33,7 @@
             </a>
           </li>
           <li class="app-header__nav__list__item app--flex app--align-center">
-            <a th:href="@{/account/expenses/{id}(id=${account.id})}">
+            <a th:href="@{/expense/{id}(id=${account.id})}">
               <i class="material-symbols-outlined md">request_quote</i>
               <span class="app--text-sm app--text-semibold">Custos fixos</span>
             </a>
@@ -101,7 +101,7 @@
           <form
             id="transaction-form"
             class="app--flex app--align-center"
-            th:action="@{/transaction}"
+            th:action="@{/transaction/{accountId}(accountId=${account.id})}"
             th:object="${transaction}"
             method="post"
           >
@@ -127,11 +127,7 @@
               />
               <label class="app-input__label" for="value">Valor</label>
             </fieldset>
-            <input
-              type="hidden"
-              th:field="*{account}"
-              th:value="${account.id}"
-            />
+
             <input type="hidden" id="type-input" th:field="*{type}" />
 
             <button id="add-button" style="width: 140px" class="app-button">
@@ -158,16 +154,30 @@
           <h4
             class="app-transactions__list__date app--container app--full-width"
             th:text="${#dates.format(transactionGroup.key, 'dd/MM/yyyy')}"
-          >
-          </h4>
+          ></h4>
           <div
             class="app-transactions__list__cards app--flex app--full-width app--align-center app--justify-start"
           >
-            <div class="app-transaction-card" th:each="transaction : ${transactionGroup.value}">
+            <div
+              class="app-transaction-card"
+              th:each="transaction : ${transactionGroup.value}"
+            >
               <div class="app-transaction-card__icon">
-                <i th:if="${transaction.type.name == 'PAYMENT'}" class="material-symbols-outlined xxl">attach_money</i>
-                <i th:if="${transaction.type.name == 'REVENUE'}" class="material-symbols-outlined xxl">move_to_inbox</i>
-                <i th:if="${transaction.type.name == 'TRANSFERENCY'}" class="material-symbols-outlined xxl">send</i>
+                <i
+                  th:if="${transaction.type.name == 'PAYMENT'}"
+                  class="material-symbols-outlined xxl"
+                  >attach_money</i
+                >
+                <i
+                  th:if="${transaction.type.name == 'REVENUE'}"
+                  class="material-symbols-outlined xxl"
+                  >move_to_inbox</i
+                >
+                <i
+                  th:if="${transaction.type.name == 'TRANSFERENCY'}"
+                  class="material-symbols-outlined xxl"
+                  >send</i
+                >
               </div>
               <div
                 class="app-transaction-card__content app--flex app--column app--mr-2"
@@ -183,7 +193,10 @@
               </div>
               <div class="app-transaction-card__value app--flex app--align-end">
                 <span class="app--text-sm app--text-semibold">R$</span>
-                <span class="app--text-lg app--text-semibold" th:text="${#numbers.formatDecimal(transaction.value, 1, 2, 'COMMA')}"></span>
+                <span
+                  class="app--text-lg app--text-semibold"
+                  th:text="${#numbers.formatDecimal(transaction.value, 1, 2, 'COMMA')}"
+                ></span>
               </div>
             </div>
           </div>
@@ -194,7 +207,7 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script type="module" src="/lib/app.js"></script>
     <script type="module">
-      import App from "./lib/app.js";
+      import App from "/lib/app.js";
 
       window.addEventListener("load", () => {
         const app = new App("Home");

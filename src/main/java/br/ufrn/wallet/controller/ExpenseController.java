@@ -52,17 +52,17 @@ public class ExpenseController {
     return this.listExpenses(accountId, model);
   }
 
-  @DeleteMapping("/{accountId}/{id}")
+  @PostMapping("/delete/{accountId}/{id}")
   public String deleteExpense(@PathVariable Long id, @PathVariable Long accountId, Model model) {
     expenseService.deleteExpense(id);
     return this.listExpenses(accountId, model);
   }
 
-  @PatchMapping("/{accountId}/{id}")
+  @PostMapping("/edit/{accountId}/{id}")
   public String editEXpenses(@PathVariable Long id, @PathVariable Long accountId, @ModelAttribute Expense expense,
       Model model) {
     Expense e = expenseService.getExpenseById(id);
-    e.setDescription(expense.getDescription()).setDay(expense.getDay());
+    e.setDescription(expense.getDescription()).setDay(expense.getDay()).setValue(expense.getValue());
     expenseService.saveExpense(e);
 
     return this.listExpenses(accountId, model);
