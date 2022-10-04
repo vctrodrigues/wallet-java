@@ -27,7 +27,7 @@
           <li
             class="app-header__nav__list__item app-header__nav__list__item--active app--flex app--align-center"
           >
-            <a th:href="@{/account/boxes/{id}(id=${account.id})}">
+            <a th:href="@{/boxes/{id}(id=${account.id})}">
               <i class="material-symbols-outlined md">archive</i>
               <span class="app--text-sm app--text-semibold">
                 Minhas caixinhas
@@ -35,7 +35,7 @@
             </a>
           </li>
           <li class="app-header__nav__list__item app--flex app--align-center">
-            <a th:href="@{/account/expenses/{id}(id=${account.id})}">
+            <a th:href="@{/expense/{id}(id=${account.id})}">
               <i class="material-symbols-outlined md">request_quote</i>
               <span class="app--text-sm app--text-semibold">Custos fixos</span>
             </a>
@@ -62,32 +62,40 @@
         </div>
 
         <div class="app-boxes__list app--my-3 app--flex app--container">
-          <div class="app-box-card app--flex app--column app--align-start">
+          <div
+            th:each="box : ${boxes}"
+            class="app-box-card app--flex app--column app--align-start"
+          >
             <div class="app-box-card__content app--flex app--column">
-              <span class="app--text-sm">#0001</span>
-              <span class="app--text-md app--mt-1">Nome da caixinha</span>
+              <span class="app--text-sm" th:text="'#' + ${box.id}"></span>
+              <span class="app--text-md app--mt-1" th:text="${box.name}"></span>
             </div>
             <div class="app-box-card__value">
               <span class="app--text-sm app--my-2 app--text-semibold">
                 R$
               </span>
-              <span class="app--text-lg app--my-2 app--text-semibold">
-                20.000,00
+              <span
+                class="app--text-lg app--my-2 app--text-semibold"
+                th:text="${#numbers.formatDecimal(box.value, 3, 'POINT', 2, 'COMMA')}"
+              >
               </span>
             </div>
             <div class="app-box-card__footer app--flex app--column">
-              <a href="#" class="app--text-sm">Adicionar dinheiro</a>
-              <a href="#" class="app--text-sm">Editar caixinha</a>
-              <a href="#" class="app--text-sm app--text-danger">
+              <a href="#" class="app--text-xs">Adicionar dinheiro</a>
+              <a href="#" class="app--text-xs">Editar caixinha</a>
+              <a href="#" class="app--text-xs app--text-danger">
                 Excluir caixinha
               </a>
             </div>
           </div>
 
           <div
-            class="app-box-card app-box-card--outlined app--flex app--column app--align-start"
+            id="open-create"
+            class="app-box-card app-box-card--outlined app--flex app--column app--justify-center app--align-center"
           >
-            <div class="app-box-card__content app--flex app--column">
+            <div
+              class="app-box-card__content app--flex app--column app--align-center"
+            >
               <div class="material-symbols-outlined">archive</div>
               <span class="app--text-semibold">Adicionar caixinha</span>
             </div>
@@ -103,11 +111,12 @@
       <div class="app-dialog__content">
         <form
           id="create-form"
-          action=""
+          th:action="@{/boxes/{id}(id=${account.id})}"
           th:object="${box}"
+          method="post"
           class="app--flex app--column app--full-width"
         >
-          <fieldset id="name-input" class="app-input app--mr-1">
+          <fieldset id="name-input" class="app-input">
             <input
               class="app-input__field"
               type="text"
@@ -118,7 +127,7 @@
             />
             <label class="app-input__label" for="name">Nome da caixinha</label>
           </fieldset>
-          <fieldset id="value-input" class="app-input app--mr-1">
+          <fieldset id="value-input" class="app-input">
             <input
               class="app-input__field"
               type="number"
@@ -132,15 +141,61 @@
         </form>
       </div>
       <div class="app-dialog__footer app--flex app--justify-end">
-        <button id="create-cancel-button" class="app-button">Cancelar</button>
+        <button
+          id="create-cancel-button"
+          class="app-button app-button--secondary"
+        >
+          Cancelar
+        </button>
         <button id="create-create-button" class="app-button">Criar</button>
+      </div>
+    </div>
+
+    <div th:if="${box.id == null}" id="edit-dialog" class="app-dialog">
+      <div class="app-dialog__top">
+        <h2>Editar caixinha</h2>
+      </div>
+      <div class="app-dialog__content">
+        <form
+          id="edit-form"
+          th:action="@{/boxes/{accountId}/{id}(accountId=${account.id},id=${box.id})}"
+          th:object="${box}"
+          method="patch"
+          class="app--flex app--column app--full-width"
+        >
+          <fieldset id="name-input" class="app-input">
+            <input
+              class="app-input__field"
+              type="text"
+              id="name"
+              name="name"
+              th:field="*{name}"
+              placeholder=" "
+            />
+            <label class="app-input__label" for="name">Nome da caixinha</label>
+          </fieldset>
+          <fieldset id="value-input" class="app-input">
+            <input
+              class="app-input__field"
+              type="number"
+              id="value"
+              name="value"
+              th:field="*{value}"
+              placeholder=" "
+            />
+            <label class="app-input__label" for="value">Valor inicial</label>
+          </fieldset>
+        </form>
+      </div>
+      <div class="app-dialog__footer app--flex app--justify-end">
+        <button id="edit-edit-button" class="app-button">Salvar</button>
       </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script type="module" src="/lib/app.js"></script>
     <script type="module">
-      import App from "./lib/app.js";
+      import App from "../lib/app.js";
 
       window.addEventListener("load", () => {
         const app = new App("Box");

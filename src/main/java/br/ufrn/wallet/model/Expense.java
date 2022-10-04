@@ -20,7 +20,7 @@ public class Expense {
 
     @Column(name = "currency")
     @Enumerated(EnumType.STRING)
-    private CurrencyEnum currency;
+    private CurrencyEnum currency = CurrencyEnum.BRL;
 
     @Column(name = "day")
     private int day;
@@ -71,6 +71,15 @@ public class Expense {
 
     public Expense setDay(int day) {
         this.day = day;
+        return this;
+    }
+
+    public Account getAccount() {
+        return this.account;
+    }
+
+    public Expense setAccount(Account account) {
+        this.account = account;
         return this;
     }
 }

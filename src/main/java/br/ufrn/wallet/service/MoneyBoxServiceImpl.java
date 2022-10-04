@@ -3,12 +3,9 @@ package br.ufrn.wallet.service;
 import br.ufrn.wallet.model.MoneyBox;
 import br.ufrn.wallet.repository.MoneyBoxRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Component
 public class MoneyBoxServiceImpl implements MoneyBoxService {

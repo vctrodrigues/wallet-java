@@ -1,63 +1,217 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-<head>
+<html
+  lang="pt-BR"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/styles/main.css" />
     <link
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-            rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
     />
-    <title>Minhas caixinhas | Wallet</title>
-</head>
-<body>
-<header
-        class="app-header app--full-width app--container app--sticky app--flex app--align-center app--justify-between"
->
-    <div class="app-logo app--px-2 app--py-4">
+    <title>Meus custos | Wallet</title>
+  </head>
+  <body>
+    <header
+      class="app-header app--full-width app--container app--sticky app--flex app--align-center app--justify-between"
+    >
+      <div class="app-logo app--px-2 app--py-4">
         <img class="app-logo__img" src="/img/logo.svg" alt="Logo Wallet" />
-    </div>
-    <nav class="app-header__nav">
+      </div>
+      <nav class="app-header__nav">
         <ul class="app-header__nav__list app--flex">
-            <li
-                    class="app-header__nav__list__item app-header__nav__list__item--active app--flex app--align-center"
-            >
-                <a th:href="@{/boxes}">
-                    <i class="material-symbols-outlined md">archive</i>
-                    <span class="app--text-sm app--text-semibold">
+          <li
+            class="app-header__nav__list__item app-header__nav__list__item--active app--flex app--align-center"
+          >
+            <a th:href="@{/boxes/{id}(id=${account.id})}">
+              <i class="material-symbols-outlined md">archive</i>
+              <span class="app--text-sm app--text-semibold">
                 Minhas caixinhas
               </span>
-                </a>
-            </li>
-            <li class="app-header__nav__list__item app--flex app--align-center">
-                <a th:href="@{/expenses}">
-                    <i class="material-symbols-outlined md">request_quote</i>
-                    <span class="app--text-sm app--text-semibold">Custos fixos</span>
-                </a>
-            </li>
-            <li
-                    class="app-header__nav__list__item app-header__nav__list__item--no-tab app--flex app--ml-1 app--align-center"
-            >
+            </a>
+          </li>
+          <li class="app-header__nav__list__item app--flex app--align-center">
+            <a th:href="@{/expense/{id}(id=${account.id})}">
+              <i class="material-symbols-outlined md">request_quote</i>
+              <span class="app--text-sm app--text-semibold">Custos fixos</span>
+            </a>
+          </li>
+          <li
+            class="app-header__nav__list__item app-header__nav__list__item--no-tab app--flex app--ml-1 app--align-center"
+          >
             <span class="app--text-sm app--text-semibold">
-              Olá, <span class="app--text-semibold" th:text="${account.name}"></span>
+              Olá,
+              <span class="app--text-semibold" th:text="${account.name}"></span>
             </span>
-            </li>
+          </li>
         </ul>
-    </nav>
-</header>
+      </nav>
+    </header>
 
-<main class="app-main app--full-width"></main>
+    <main class="app-main app--full-width">
+      <section
+        class="app-expense app--flex app--column app--full-width app--py-4"
+      >
+        <div
+          class="app-expenses__top app--container app--flex app--align-center"
+        >
+          <i class="material-symbols-outlined xl">request_quote</i>
+          <h3>Meus custos</h3>
+        </div>
 
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script type="module" src="/lib/app.js"></script>
-<script type="module">
-      import App from "./lib/app.js";
+        <div class="app-expenses__list app--my-3 app--flex app--container">
+          <div
+            th:each="expense : ${expenses}"
+            class="app-expense-card app--flex app--column app--align-start"
+          >
+            <div class="app-expense-card__content app--flex app--column">
+              <span
+                class="app--text-sm"
+                th:text="'Todo dia ' + ${expense.day}"
+              ></span>
+              <span
+                class="app--text-md app--mt-1"
+                th:text="${expense.description}"
+              ></span>
+            </div>
+            <div class="app-expense-card__value">
+              <span class="app--text-sm app--my-2 app--text-semibold">
+                R$
+              </span>
+              <span
+                class="app--text-lg app--my-2 app--text-semibold"
+                th:text="${#numbers.formatDecimal(expense.value, 1, 'POINT', 2, 'COMMA')}"
+              >
+              </span>
+            </div>
+            <div class="app-expense-card__footer app--flex app--column">
+              <a href="#" class="app--text-xs">Editar</a>
+              <a
+                id="open-delete"
+                href="#"
+                class="app--text-xs app--text-danger"
+              >
+                Excluir
+              </a>
+            </div>
+          </div>
+
+          <div
+            id="open-create"
+            class="app-expense-card app-expense-card--outlined app--flex app--column app--justify-center app--align-center"
+          >
+            <div
+              class="app-expense-card__content app--flex app--column app--align-center"
+            >
+              <div class="material-symbols-outlined">request_quote</div>
+              <span class="app--text-semibold">Adicionar custo</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="create-dialog" class="app-dialog">
+      <div class="app-dialog__top">
+        <h2>Criar custo</h2>
+      </div>
+      <div class="app-dialog__content">
+        <form
+          id="create-form"
+          th:action="@{/expense/{id}(id=${account.id})}"
+          th:object="${expense}"
+          method="post"
+          class="app--flex app--column app--full-width"
+        >
+          <fieldset id="description-input" class="app-input">
+            <input
+              class="app-input__field"
+              type="text"
+              id="description"
+              name="description"
+              th:field="*{description}"
+              placeholder=" "
+            />
+            <label class="app-input__label" for="description">
+              Nome do custo
+            </label>
+          </fieldset>
+          <fieldset id="day-input" class="app-input">
+            <input
+              class="app-input__field"
+              type="text"
+              id="day"
+              name="day"
+              th:field="*{day}"
+              placeholder=" "
+              min="1"
+              max="31"
+            />
+            <label class="app-input__label" for="day">Dia do mês</label>
+          </fieldset>
+          <fieldset id="value-input" class="app-input">
+            <input
+              class="app-input__field"
+              type="number"
+              id="value"
+              name="value"
+              th:field="*{value}"
+              placeholder=" "
+            />
+            <label class="app-input__label" for="value">Valor inicial</label>
+          </fieldset>
+        </form>
+      </div>
+      <div class="app-dialog__footer app--flex app--justify-end">
+        <button
+          id="create-cancel-button"
+          class="app-button app-button--secondary"
+        >
+          Cancelar
+        </button>
+        <button id="create-create-button" class="app-button">Criar</button>
+      </div>
+    </div>
+
+    <div id="delete-dialog" class="app-dialog">
+      <div class="app-dialog__top">
+        <h2>Deletar custo</h2>
+      </div>
+      <div class="app-dialog__content">
+        <form
+          id="delete-form"
+          method="delete"
+          class="app--flex app--column app--full-width"
+        >
+          <span>Tem certeza que deseja excluir esse custo fixo?</span>
+          <span class="app--text-semibold app--mt-1">
+            Essa ação não poderá ser desfeita.
+          </span>
+        </form>
+      </div>
+      <div class="app-dialog__footer app--flex app--justify-end">
+        <button
+          id="delete-cancel-button"
+          class="app-button app-button--secondary"
+        >
+          Cancelar
+        </button>
+        <button id="delete-confirm-button" class="app-button">Excluir</button>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script type="module" src="/lib/app.js"></script>
+    <script type="module">
+      import App from "../lib/app.js";
 
       window.addEventListener("load", () => {
-        const app = new App("Box");
+        const app = new App("Expense");
       });
     </script>
-</body>
+  </body>
 </html>

@@ -33,14 +33,27 @@ public class MoneyBoxController {
         return "box/index";
     }
 
-    @PostMapping("/{account_id}")
-    public String createMoneyBox(@ModelAttribute MoneyBox moneyBox, @PathVariable Long account_id, Model model) {
-        MoneyBox moneyBoxSaved = moneyBoxService.createMoneyBox(moneyBox);
-        List<MoneyBox> moneyBoxes = moneyBoxService.listMoneyBoxesByAccount(account_id);
+    @GetMapping("/{accountId}/edit/{id}")
+    public String accessBoxes(@PathVariable Long accountId, @PathVariable Long id, Model model) {
+        List<MoneyBox> moneyBoxes = moneyBoxService.listMoneyBoxesByAccount(accountId);
+        MoneyBox moneyBox = moneyBoxService.getMoneyBoxById(id);
+
+        model.addAttribute("boxes", moneyBoxes);
+        model.addAttribute("box", moneyBox);
+        model.addAttribute("account", accountService.getAccountById(accountId));
+        return "box/index";
+    }
+
+    @PostMapping("/{accountId}")
+    public String createMoneyBox(@ModelAttribute MoneyBox box, @PathVariable Long accountId, Model model) {
+        box.addParticipants(accountService.getAccountById(accountId));
+
+        MoneyBox moneyBoxSaved = moneyBoxService.createMoneyBox(box);
+        List<MoneyBox> moneyBoxes = moneyBoxService.listMoneyBoxesByAccount(accountId);
 
         model.addAttribute("boxes", moneyBoxes);
         model.addAttribute("box", new MoneyBox());
-        model.addAttribute("account", accountService.getAccountById(account_id));
+        model.addAttribute("account", accountService.getAccountById(accountId));
 
         return "box/index";
     }

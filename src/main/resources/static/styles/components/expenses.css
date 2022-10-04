@@ -1,0 +1,15 @@
+.app-expense > .app-expenses__top {
+  gap: 5px;
+}
+
+.app-expense > .app-expenses__top > i {
+  color: var(--app-color--background200);
+}
+
+.app-expense > .app-expenses__content {
+  gap: 30px;
+}
+
+.app-expense > .app-expenses__list {
+  gap: 10px;
+}

@@ -1,6 +1,7 @@
 .app-dialog {
   position: absolute;
-  display: flex;
+  display: none;
+  flex-direction: column;
 
   width: 600px;
 
@@ -8,19 +9,22 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
-  background-color: var(--app-color--backgroundShadow);
-  filter: blur(32px);
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px -8px var(--app-color--backgroundShadow);
+
+  background-color: var(--app-color--background600);
 }
 
-.app-dialog::before {
-  content: " ";
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
+.app-dialog > .app-dialog__footer {
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--app-color--background400);
+}
 
-  width: 100%;
-  height: 100vh;
-
-  padding: 20px;
+.app-dialog > .app-dialog__top {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--app-color--background400);
 }

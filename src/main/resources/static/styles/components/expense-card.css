@@ -1,4 +1,4 @@
-.app-box-card {
+.app-expense-card {
   padding: 20px 30px;
   border-radius: 5px;
 
@@ -11,17 +11,17 @@
   background-color: var(--app-color--background600);
 }
 
-.app-box-card--outlined {
+.app-expense-card--outlined {
   background-color: transparent;
   border: 1px dashed var(--app-color--background600);
   cursor: pointer;
 }
 
-.app-box-card--outlined > .app-box-card__content {
+.app-expense-card--outlined > .app-expense-card__content {
   gap: 5px;
 }
 
-.app-box-card > .app-box-card__icon {
+.app-expense-card > .app-expense-card__icon {
   width: 70px;
   height: 70px;
 
@@ -40,19 +40,19 @@
   );
 }
 
-.app-box-card > .app-box-card__icon > i {
+.app-expense-card > .app-expense-card__icon > i {
   color: var(--app-color--background200);
   cursor: default;
 }
 
-.app-box-card > .app-box-card__content > span.app--text-sm {
+.app-expense-card > .app-expense-card__content > span.app--text-sm {
   color: var(--app-color--background400);
 }
 
-.app-box-card > .app-box-card__value > span {
+.app-expense-card > .app-expense-card__value > span {
   line-height: 20px;
 }
 
-.app-box-card > .app-box-card__value > span:nth-child(1) {
+.app-expense-card > .app-expense-card__value > span:nth-child(1) {
   margin-right: 5px;
 }
