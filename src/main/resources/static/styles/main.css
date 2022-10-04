@@ -21,3 +21,8 @@ html {
 body {
   background-color: var(--app-color--background);
 }
+
+.app-main {
+  overflow: hidden;
+  position: relative;
+}

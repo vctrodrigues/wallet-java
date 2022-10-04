@@ -20,7 +20,9 @@
       class="app-header app--full-width app--container app--sticky app--flex app--align-center app--justify-between"
     >
       <div class="app-logo app--px-2 app--py-4">
-        <img class="app-logo__img" src="/img/logo.svg" alt="Logo Wallet" />
+        <a th:href="@{/account/{id}(id=${account.id})}">
+          <img class="app-logo__img" src="/img/logo.svg" alt="Logo Wallet" />
+        </a>
       </div>
       <nav class="app-header__nav">
         <ul class="app-header__nav__list app--flex">

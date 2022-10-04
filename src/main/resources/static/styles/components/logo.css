@@ -11,6 +11,7 @@
   border-bottom-right-radius: 20px;
 }
 
-.app-logo > img {
+.app-logo > a,
+.app-logo > a > img {
   width: 160px;
 }

@@ -10,7 +10,6 @@ import br.ufrn.wallet.model.Account;
 import br.ufrn.wallet.model.Transaction;
 import br.ufrn.wallet.service.AccountService;
 import br.ufrn.wallet.service.TransactionService;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
 import java.util.List;

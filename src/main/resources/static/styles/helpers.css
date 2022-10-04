@@ -326,6 +326,20 @@
 
 /* SCROLLBAR */
 
+.app--scrollbar::scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.app--scrollbar::scrollbar-track {
+  background-color: var(--app-color--grey200);
+}
+
+.app--scrollbar::scrollbar-thumb {
+  background-color: var(--app-color--grey400);
+  border-radius: 5px;
+}
+
 .app--scrollbar::-webkit-scrollbar {
   width: 5px;
   height: 5px;

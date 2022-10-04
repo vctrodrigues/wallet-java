@@ -1,0 +1,66 @@
+.app-main__animated-image {
+  position: absolute;
+  animation: 2s linear infinite alternate bouncing;
+}
+
+.app-main__girl {
+  width: 520px;
+  left: calc(50% - 400px);
+}
+
+.app-main__money {
+  width: 350px;
+}
+
+.app-main__money:nth-child(4) {
+  width: 550px;
+  left: -200px;
+  top: -200px;
+  animation: 2s linear infinite alternate bouncing-rotate;
+}
+
+.app-main__money:nth-child(5) {
+  width: 450px;
+  bottom: -100px;
+  left: 100px;
+}
+
+@keyframes bouncing-rotate {
+  0% {
+    transform: rotate(45deg) translateY(-50px);
+  }
+
+  100% {
+    transform: rotate(45deg) translateY(50px);
+  }
+}
+
+@-webkit-keyframes bouncing-rotate {
+  0% {
+    transform: rotate(45deg) translateY(-50px);
+  }
+
+  100% {
+    transform: rotate(45deg) translateY(50px);
+  }
+}
+
+@keyframes bouncing {
+  0% {
+    transform: translateY(-50px);
+  }
+
+  100% {
+    transform: translateY(50px);
+  }
+}
+
+@-webkit-keyframes bouncing {
+  0% {
+    transform: translateY(-50px);
+  }
+
+  100% {
+    transform: translateY(50px);
+  }
+}
